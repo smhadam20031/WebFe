@@ -81,16 +81,16 @@
                     <ul class="list-group list-group-flush live-search-list">
 
                         @foreach (var item in Model.lstServices)
-                        //var item in Model.lstServices
+                            //var item in Model.lstServices
                         {
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-6">
-
+                                        
                                         @item.departmentName
                                     </div>
                                     <div class="col-6 justify-content-center align-items-center">
-                                        <button type="button" class="btn btn-lg btn-block btn-primary" data-name="@item.departmentCode" data-value="@item.departmentCode" id="btnitems" onclick="showServiceTypes(@item.departmentCode)">
+                                        <button type="button" class="btn btn-lg btn-block btn-primary" data-name="@item.departmentCode" data-value="@item.departmentCode" id="btnitems" onclick="showServiceItemTypes(@item.departmentCode)">
                                             @Resources.Resources.Apply
                                         </button>
                                     </div>

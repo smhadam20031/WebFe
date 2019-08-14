@@ -22,6 +22,8 @@ namespace app.bsms.Models.Catelogue
 
     public List<Service> lstServices { get; set; }
 
+        
+
     public List<Brand> lstBrands { get; set; }
 
     public List<Brand> lstVouchers { get; set; }
@@ -30,9 +32,9 @@ namespace app.bsms.Models.Catelogue
 
     public List<ServiceType> lstServiceTypes { get; set; }
 
-        public List<ServiceType> lstServiceTypes1 { get; set; }
+    public List<ServiceType> lstServicesTypes1 { get; set; }
 
-        public List<Range> lstRanges { get; set; }
+    public List<Range> lstRanges { get; set; }
 
     public List<ServiceTypeItem> lstServiceTypeItems { get; set; }
 

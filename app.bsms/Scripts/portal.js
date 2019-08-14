@@ -45,6 +45,7 @@ function showServiceTypes(id) {
     //contentType: "application/x-www-form-urlencoded",
 }
 
+
 function showServiceItemTypes(id) {
     $.ajax({
         url: "/Service/GetServiceTypeItem",

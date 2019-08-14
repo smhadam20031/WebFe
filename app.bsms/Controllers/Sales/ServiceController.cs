@@ -437,6 +437,17 @@ namespace app.bsms.Controllers.Sales
             return this.PartialView("_PartialServiceType", catelogue);
         }
 
+        //public ActionResult GetServiceType()
+        //{
+        //    Catelogue catelogue = new Catelogue();
+        //    app.bsms.api.Service.Parameters.Clear();
+        //    app.bsms.api.Service.Parameters.Add("siteCode", ((app.bsms.Models.Account.User)base.Session["Login_Details"]).siteCode);
+        //    catelogue.lstServiceTypes = app.bsms.api.Service.GetList<ServiceType>("serviceType");
+        //    return this.PartialView("_PartialServiceType", catelogue);
+        //}
+
+
+
         public ActionResult GetServiceTypeItem(string typeID)
         {
             Catelogue catelogue = new Catelogue();
@@ -534,12 +545,16 @@ namespace app.bsms.Controllers.Sales
             {
                 app.bsms.api.Service.Parameters.Clear();
                 app.bsms.api.Service.Parameters.Add("siteCode", ((app.bsms.Models.Account.User)base.Session["Login_Details"]).siteCode);
+                
                 catelogue.lstServices = app.bsms.api.Service.GetList<app.bsms.Models.Catelogue.Service>("department");
-                //catelogue.lstServiceTypes1 = app.bsms.api.Service.GetList<ServiceType>("serviceType");
-                catelogue.lstServiceTypes1 = app.bsms.api.Service.GetList<ServiceType>("serviceType");
+                
+                //catelogue.lstServiceTypes = app.bsms.api.Service.GetList<app.bsms.Models.Catelogue.ServiceType>("department");
+                //catelogue.lstServicesTypes1 = app.bsms.api.Service.GetList<app.bsms.Models.Catelogue.Service>("department");
                 catelogue.lstBrands = app.bsms.api.Service.GetList<Brand>("Brand");
                 catelogue.lstVouchers = app.bsms.api.Service.GetList<Brand>("voucherBrand");
                 catelogue.lstPrepaids = app.bsms.api.Service.GetList<Brand>("prepaidBrand");
+               
+                
             }
             catch (Exception exception)
             {

@@ -12,7 +12,7 @@
 </nav>
 
 @*<div class="pull-right">*@
-<div>
+<div >
     <div class="row">
         <div class="col-sm-2">
         </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-sm-2">
             @using (Html.BeginForm("Delete", "Cart", FormMethod.Post, new { name = "frmDelete", id = "frmDelete", role = "form" }))
-            {
+        {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
 
@@ -36,128 +36,51 @@
 
                 @*<button type="submit" class="btn btn-primary btn-block btn-lg" value="Delete" name="Delete">@Resources.Resources.Delete All</button>*@
                 @*<button type="submit" class="btn btn-primary btn-block btn-lg pull-right" value="Delete" name="Delete" style="background: url(../../images/emptycart.png)">Delete All</button>*@
-                @*<button type="submit" class="btn btn-primary btn-block btn-lg" value="Delete" name="Delete">@Resources.Resources.EmptyCart</button>*@
-                @*<button type="submit" class="btn btn-primary btn-block btn-lg" >@Resources.Resources.EmptyCart</button>*@
+                <button type="submit" class="btn btn-primary btn-block btn-lg" value="Delete" name="Delete">@Resources.Resources.EmptyCart</button>
                 @*<button type="submit" class="btn btn-primary btn-block btn-lg" value="Delete" name="Delete" alt="submit" style="background: url(../../images/emptycart.png); background-size: cover;">@Resources.Resources.EmptyCart</button>*@
-                <button id="btnemptycart" type="button" class="btn btn-lg btn-block btn-block">Empty Cart !</button>
             }
+            </div>
         </div>
+        <div class="clearfix">&nbsp;</div>
     </div>
-    <div class="clearfix">&nbsp;</div>
-</div>
-@*confirmation poup model for empty cart*@
-<div class="modal fade" id="mdlemptycart" tabindex="-1" role="dialog" aria-labelledby="mdlemptycart" aria-hidden="true">
-    <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
+        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { name = "frmCart", id = "frmCart", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.Raw(@TempData["Message"])
 
-                @*<div class="form-group">*@
-                <label>Are you sure to Empty Cart?</label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                @*</div>*@
-            </div>
-            <div class="modal-dialog-centered">
-
-                <div class="col-3 justify-content-lg-end align-items-lg-end">
-
-                    <button type="submit" class="btn btn-primary btn-block btn-lg" id="btnemptycart">@Resources.Resources.EmptyCart</button>
-                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnvoidNo" data-dismiss="modal">@Resources.Resources.Cancel</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-@*confirmation popup model for empty cart*@
-@*confirmation poup model for Check Out*@
-<div class="modal fade" id="mdlcheckout" tabindex="-1" role="dialog" aria-labelledby="mdlcheckout" aria-hidden="true">
-    <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                @*<div class="form-group">*@
-                <label>Are you sure to Check Out?</label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                @*</div>*@
-            </div>
-            <div class="modal-dialog-centered">
-
-                <div class="col-3 justify-content-lg-end align-items-lg-end">
-
-                    <button type="submit" class="btn btn-primary fluid btn-lg" value="Pay" name="Pay">@Resources.Resources.CheckOut</button>
-                    <button type="button" class="btn btn-primary fluid btn-lg" id="btnvoidNo" data-dismiss="modal">@Resources.Resources.Cancel</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-@*confirmation popup model for Check Out*@
-@*confirmation poup model for Suspend*@
-<div class="modal fade" id="mdlsuspend" tabindex="-1" role="dialog" aria-labelledby="mdlsuspend" aria-hidden="true">
-    <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                @*<div class="form-group">*@
-                <label>Are you sure to Suspend?</label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                @*</div>*@
-            </div>
-            <div class="modal-dialog-centered">
-
-                <div class="col-3 justify-content-lg-end align-items-lg-end">
-
-                    <button type="button" class="btn btn-primary fluid btn-lg" id="btnSuspend">@Resources.Resources.Suspend</button>
-                    <button type="button" class="btn btn-primary fluid btn-lg" id="btnvoidNo" data-dismiss="modal">@Resources.Resources.Cancel</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-@*confirmation popup model for Suspend*@
-
-
-
-@using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { name = "frmCart", id = "frmCart", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    @Html.Raw(@TempData["Message"])
-
-    @Html.HiddenFor(m => m.cart.userID)
-    @Html.HiddenFor(m => m.cart.siteCode)
-    @Html.HiddenFor(m => m.cart.salesStatus)
-    @Html.HiddenFor(m => m.cart.salesType)
-    @Html.HiddenFor(m => m.cart.customerCode)
-    @Html.HiddenFor(m => m.cart.staffCode)
-    @Html.HiddenFor(m => m.cart.cartToken)
-    <div class="row">
-        <div class="col">
-            <div class="form-group">
-                @Html.LabelFor(m => m.cart.customerName)
-                <div class="input-group">
-                    @Html.TextBoxFor(m => m.cart.customerName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
-                    <div class="input-group-append">
-                        <button id="btnSearchCustomer" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
-                    </div>
-                </div>
-            </div>
-            @Html.ValidationMessageFor(m => m.cart.customerName)
-        </div>
-        <div class="col">
-            <button id="btnSearchStaff" class="btn btn-lg btn-primary pull-right mt-5" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Staff</button>
-            @*<div class="form-group">
-                    @Html.LabelFor(m => m.cart.staffName)
-                    <div class="input-group">
-                        @Html.TextBoxFor(m => m.cart.staffName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
-                        <div class="input-group-append">
-                            <button id="btnSearchStaff" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+            @Html.HiddenFor(m => m.cart.userID)
+            @Html.HiddenFor(m => m.cart.siteCode)
+            @Html.HiddenFor(m => m.cart.salesStatus)
+            @Html.HiddenFor(m => m.cart.salesType)
+            @Html.HiddenFor(m => m.cart.customerCode)
+            @Html.HiddenFor(m => m.cart.staffCode)
+            @Html.HiddenFor(m => m.cart.cartToken)
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.cart.customerName)
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.cart.customerName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
+                            <div class="input-group-append">
+                                <button id="btnSearchCustomer" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+                            </div>
                         </div>
                     </div>
+                    @Html.ValidationMessageFor(m => m.cart.customerName)
                 </div>
-                @Html.ValidationMessageFor(m => m.cart.staffName)*@
+                <div class="col">
+                    <button id="btnSearchStaff" class="btn btn-lg btn-primary pull-right mt-5" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Staff</button>
+                    @*<div class="form-group">
+                        @Html.LabelFor(m => m.cart.staffName)
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.cart.staffName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
+                            <div class="input-group-append">
+                                <button id="btnSearchStaff" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.cart.staffName)*@
         </div>
     </div>
     <div class="clearfix">&nbsp;</div>
@@ -184,7 +107,7 @@
                                         {
                                             foreach (var itm in x.salesStaffDetails)
                                             {
-                                                var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + Model.cart.siteCode + "/" + "EMP_" + Model.cart.siteCode + "_" + itm.staffCode + ".jpg";
+                                                var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itm.staffCode + ".jpg";
                                                 <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
                                             }
                                         }
@@ -222,7 +145,7 @@
                                                 {
                                                     foreach (var itemtreat in item.treatmentStaffDetails)
                                                     {
-                                                        var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + Model.cart.siteCode + "/" + "EMP_" + Model.cart.siteCode + "_" + itemtreat.staffCode + ".jpg";
+                                                        var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itemtreat.staffCode + ".jpg";
                                                         <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
                                                     }
                                                 }
@@ -245,7 +168,7 @@
                                         {
                                             foreach (var itm in x.salesStaffDetails)
                                             {
-                                                var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + Model.cart.siteCode + "/" + "EMP_" + Model.cart.siteCode + "_" + itm.staffCode + ".jpg";
+                                                var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itm.staffCode + ".jpg";
                                                 <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
                                             }
                                         }
@@ -283,7 +206,7 @@
                                                 {
                                                     foreach (var itemtreat in item.treatmentStaffDetails)
                                                     {
-                                                        var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + Model.cart.siteCode + "/" + "EMP_" + Model.cart.siteCode + "_" + itemtreat.staffCode + ".jpg";
+                                                        var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itemtreat.staffCode + ".jpg";
                                                         <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
                                                     }
                                                 }
@@ -437,33 +360,30 @@
                 {
                     <div class="row">
                         <div class="col-7 text-nowrap">@Resources.Resources.TotalAmount</div>
-                        <div class="col-5 text-right">@(Model.cart.transactionDetails.Sum(f => f.itemAmount) + Model.cart.transactionDetails.Sum(f => f.unitDiscount))</div>
+                        <div class="col-5 text-right">@(Model.cart.transactionDetails.Sum(f=>f.itemAmount) + Model.cart.transactionDetails.Sum(f => f.unitDiscount))</div>
                     </div>
                     <div class="row">
                         <div class="col-7 text-nowrap">@Resources.Resources.Discount</div>
-                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.unitDiscount)</div>
+                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f=>f.unitDiscount)</div>
                     </div>
                     <div class="row">
                         <div class="col-7 text-nowrap">@Resources.Resources.Deposit</div>
-                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.depositAmount)</div>
+                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f=> f.depositAmount)</div>
                     </div>
                     <div class="row">
                         <div class="col-7 text-nowrap">@Resources.Resources.TotalGST</div>
-                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.gstAmountCollected)</div>
+                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f=>f.gstAmountCollected)</div>
                     </div>
                 }
             </section>
         </div>
     </div>
-    <div class="clearfix"></div>
+    <div class="clearfix">&nbsp;</div>
     <div class="row">
         <div class="col">
             <div class="btn-group fluid btn-group-lg" role="group" aria-label="">
-                <button id="btncheckout" type="button" class="btn btn-primary fluid btn-lg">@Resources.Resources.CheckOut</button>
-                <button id="btnsupend" type="button" class="btn btn-primary fluid btn-lg">@Resources.Resources.Suspend</button>
-
-                @*<button type="submit" class="btn btn-primary fluid btn-lg" value="Pay" name="Pay">@Resources.Resources.CheckOut</button>
-                <button type="button" class="btn btn-primary fluid btn-lg" id="btnSuspend">@Resources.Resources.Suspend</button>*@
+                <button type="submit" class="btn btn-primary fluid btn-lg" value="Pay" name="Pay">@Resources.Resources.CheckOut</button>
+                <button type="button" class="btn btn-primary fluid btn-lg" id="btnSuspend">@Resources.Resources.Suspend</button>
                 @*<button type="submit" class="btn btn-primary fluid btn-lg" value="Void" name="Void">Void</button>*@
             </div>
         </div>
@@ -507,7 +427,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="mdlStaff" tabindex="-1" role="dialog" aria-labelledby="mdlStaff" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="dialog">
         <div class="modal-content">
@@ -516,72 +435,72 @@
             </div>
             @using (Html.BeginForm("Staff", "Cart", FormMethod.Post, new { name = "frmStaff", id = "frmStaff", role = "form" }))
             {
-                <div class="modal-body">
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
-                    @Html.HiddenFor(m => m.cart.userID)
-                    @Html.HiddenFor(m => m.cart.siteCode)
-                    @Html.HiddenFor(m => m.cart.cartToken)
-                    @Html.HiddenFor(m => m.cart.customerCode)
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cartDetails.staffcode)
-                                @Html.DropDownListFor(m => m.cartDetails.staffcode, new SelectList(Model.lstStaff, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
-                                @Html.ValidationMessageFor(m => m.cartDetails.staffcode)
-                            </div>
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(m => m.cart.userID)
+                @Html.HiddenFor(m => m.cart.siteCode)
+                @Html.HiddenFor(m => m.cart.cartToken)
+                @Html.HiddenFor(m => m.cart.customerCode)
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cartDetails.staffcode)
+                            @Html.DropDownListFor(m => m.cartDetails.staffcode, new SelectList(Model.lstStaff, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
+                            @Html.ValidationMessageFor(m => m.cartDetails.staffcode)
                         </div>
                     </div>
-                    @*<div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.cartDetails.ratio)
-                                    @Html.TextBoxFor(m => m.cartDetails.ratio, new { @class = "form-control form-control-lg text-right" })
-                                    @Html.ValidationMessageFor(m => m.cartDetails.ratio)
-                                </div>
-                            </div>
-                        </div>*@
-                    <div class="form-group">
-                        <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddStaff">@Resources.Resources.Save</button>
+                </div>
+                @*<div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cartDetails.ratio)
+                            @Html.TextBoxFor(m => m.cartDetails.ratio, new { @class = "form-control form-control-lg text-right" })
+                            @Html.ValidationMessageFor(m => m.cartDetails.ratio)
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="table-responsive small p-3">
-                                <table class="table table-striped" id="tblStaffs">
-                                    <thead>
-                                        <tr class="row">
-                                            <th class="col-3" scope="col">@Resources.Resources.StaffCode</th>
-                                            <th class="col-5" scope="col">@Resources.Resources.StaffName</th>
-                                            <th class="col-2" scope="col">@Resources.Resources.Ratio</th>
-                                            <th class="col-2" scope="col">@Resources.Resources.Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if (Model.cartDetails.salesStaffDetails != null)
+                </div>*@
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddStaff">@Resources.Resources.Save</button>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="table-responsive small p-3">
+                            <table class="table table-striped" id="tblStaffs">
+                                <thead>
+                                    <tr class="row">
+                                        <th class="col-3" scope="col">@Resources.Resources.StaffCode</th>
+                                        <th class="col-5" scope="col">@Resources.Resources.StaffName</th>
+                                        <th class="col-2" scope="col">@Resources.Resources.Ratio</th>
+                                        <th class="col-2" scope="col">@Resources.Resources.Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.cartDetails.salesStaffDetails != null)
+                                    {
+                                        foreach (var item in Model.cartDetails.salesStaffDetails)
                                         {
-                                            foreach (var item in Model.cartDetails.salesStaffDetails)
-                                            {
-                                                <tr class="row">
-                                                    <td class="col-3" scope="col">@item.staffCode</td>
-                                                    <td class="col-5">@item.staffName</td>
-                                                    <td class="col-2">@item.ratio</td>
-                                                    <td class="col-2">
-                                                        <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>
-                                                    </td>
-                                                </tr>
-                                            }
+                                            <tr class="row">
+                                                <td class="col-3" scope="col">@item.staffCode</td>
+                                                <td class="col-5">@item.staffName</td>
+                                                <td class="col-2">@item.ratio</td>
+                                                <td class="col-2">
+                                                    <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>
+                                                </td>
+                                            </tr>
                                         }
-                                    </tbody>
-                                </table>
-                            </div>
-                            @Html.HiddenFor(m => m.cartDetails.strStaffs)
+                                    }
+                                </tbody>
+                            </table>
                         </div>
+                        @Html.HiddenFor(m => m.cartDetails.strStaffs)
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-flat btn-lg" data-dismiss="modal" data-mode="cancel"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</button>
-                    <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Apply</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-flat btn-lg" data-dismiss="modal" data-mode="cancel"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</button>
+                <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Apply</button>
+            </div>
             }
         </div>
     </div>
@@ -610,10 +529,10 @@
                         </div>
                         <p class="text-muted">@Resources.Resources.TokenNumberText</p>
                         @*<label>@Resources.Resources.TokenNumberText</label>
-                            <div class="form-group">
-                                <label for="txtsearchStaff">@Resources.Resources.TokenNumber</label>
-                                <input type="text" class="form-control live-search-box" id="txtsearchStaff">
-                            </div>*@
+                        <div class="form-group">
+                            <label for="txtsearchStaff">@Resources.Resources.TokenNumber</label>
+                            <input type="text" class="form-control live-search-box" id="txtsearchStaff">
+                        </div>*@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary fluid btn-lg">@Resources.Resources.Proceed</button>
@@ -626,7 +545,7 @@
 <div class="modal fade" id="mdlHold" tabindex="-1" role="dialog" aria-labelledby="mdlHold" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
-            <div id="divContent"></div>
+            <div id="divContent"></div>                
         </div>
     </div>
 </div>
