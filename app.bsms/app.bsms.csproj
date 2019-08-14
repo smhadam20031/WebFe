@@ -349,6 +349,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\open-iconic.svg" />
     <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="images\CatalogueEmpty.png" />
     <Content Include="images\course.png" />
     <Content Include="images\emptycart.png" />
