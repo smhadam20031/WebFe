@@ -56,31 +56,62 @@
             @Html.HiddenFor(m => m.cart.customerCode)
             @Html.HiddenFor(m => m.cart.staffCode)
             @Html.HiddenFor(m => m.cart.cartToken)
-            <div class="row">
-                <div class="col">
+<div class="row">
+    <div class="col">
+            
+                @Html.LabelFor(m => m.cart.customerName)
+        <div class="input-group">
+            @*@Html.TextBoxFor(m => m.cart.customerName,  new { @class = "form-control form-control-lg no-right-radius" })*@
+            @Html.TextBoxFor(m => m.cart.customerName,  new { @class = "form-control form-control-lg no-right-radius" , @id="txtsearchCust"})
+            @*<input type="text" id="txtsearchCust" class="form-control live-search-box">*@
+            <div class="input-group-append">
+                <button id="btnSearchCustomer" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+            </div>
+        </div>
+     </div>
+        @*<div class="col">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.cart.customerName)
-                        <div class="input-group">
-                            @Html.TextBoxFor(m => m.cart.customerName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
-                            <div class="input-group-append">
-                                <button id="btnSearchCustomer" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
-                            </div>
+                        <div class="modal-body">
+
+                            <ul class="list-group list-group-flush live-search-list">
+
+                                @foreach (var item in Model.lstCustomer)
+                                {
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                @item.customerName
+                                                <small class="form-text text-muted">@item.customerCode</small>
+                                            </div>
+                                            <div class="col-6 justify-content-center align-items-center">
+                                                <button class="btn btn-primary btn-block" data-name="@item.customerName" data-name-target="cart.customerName" data-value="@item.customerCode" data-value-target="cart.customerCode" data-code="@item.customerCode">@Resources.Resources.Apply</button>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
                         </div>
                     </div>
-                    @Html.ValidationMessageFor(m => m.cart.customerName)
+                
+            
+            @Html.ValidationMessageFor(m => m.cart.customerName)
+        </div>*@
+    
+    
+
+        <div class="col">
+            <button id="btnSearchStaff" class="btn btn-lg btn-primary pull-right mt-5" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Staff</button>
+            @*<div class="form-group">
+                @Html.LabelFor(m => m.cart.staffName)
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.cart.staffName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
+                    <div class="input-group-append">
+                        <button id="btnSearchStaff" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <button id="btnSearchStaff" class="btn btn-lg btn-primary pull-right mt-5" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Staff</button>
-                    @*<div class="form-group">
-                        @Html.LabelFor(m => m.cart.staffName)
-                        <div class="input-group">
-                            @Html.TextBoxFor(m => m.cart.staffName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
-                            <div class="input-group-append">
-                                <button id="btnSearchStaff" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
-                            </div>
-                        </div>
-                    </div>
-                    @Html.ValidationMessageFor(m => m.cart.staffName)*@
+            </div>
+            @Html.ValidationMessageFor(m => m.cart.staffName)*@
         </div>
     </div>
     <div class="clearfix">&nbsp;</div>
@@ -398,13 +429,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
+                @*<div class="form-group">
                     <label for="txtsearchCustomer">@Resources.Resources.CustName</label>
                     <input type="text" class="form-control live-search-box" id="txtsearchCustomer">
                 </div>
                 <div>
                     <button id="btnSearchCust" class="btn btn-primary fluid btn-lg">@Resources.Resources.Search</button>
-                </div>
+                </div>*@
                 <ul class="list-group list-group-flush live-search-list" id="cust-srch-contain">
                     @*    @foreach (var x in Model.lstCustomer)
                         {

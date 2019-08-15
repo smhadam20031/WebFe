@@ -546,15 +546,13 @@ namespace app.bsms.Controllers.Sales
                 app.bsms.api.Service.Parameters.Clear();
                 app.bsms.api.Service.Parameters.Add("siteCode", ((app.bsms.Models.Account.User)base.Session["Login_Details"]).siteCode);
                 
-                catelogue.lstServices = app.bsms.api.Service.GetList<app.bsms.Models.Catelogue.Service>("department");
-                //http://103.253.15.75:99/main/api/searchItem?siteCode=XF01&itemName=Massage
-                //catelogue.lstServiceTypes = app.bsms.api.Service.GetList<app.bsms.Models.Catelogue.ServiceType>("department");
-                //catelogue.lstServicesTypes1 = app.bsms.api.Service.GetList<app.bsms.Models.Catelogue.Service>("department");
+                catelogue.lstServices = app.bsms.api.Service.GetList<app.bsms.Models.Catelogue.Service>("department");              
                 catelogue.lstBrands = app.bsms.api.Service.GetList<Brand>("Brand");
                 catelogue.lstVouchers = app.bsms.api.Service.GetList<Brand>("voucherBrand");
                 catelogue.lstPrepaids = app.bsms.api.Service.GetList<Brand>("prepaidBrand");
                
-                
+
+
             }
             catch (Exception exception)
             {

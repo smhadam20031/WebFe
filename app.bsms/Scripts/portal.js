@@ -23,6 +23,7 @@ function showCustomerModal(customer) {
         success: function (data) {
             $("#cust-srch-contain").html(data);
             //$(window).scrollTop($('#divServiceType').offset().top);
+            
 
         }
     });
@@ -1047,10 +1048,20 @@ function changeColor() {
         });
 */
         // modal popup is show,
+        //$(document).on("click", "#btnSearchCustomer", function () {
+        //    //$(".live-search-box").val('');
+        //    $("#mdlCustomer").modal({ backdrop: 'static', keyboard: false, show: true });
+
+        //});
+
         $(document).on("click", "#btnSearchCustomer", function () {
-            $(".live-search-box").val('');
+            //$(".live-search-box").val('');
             $("#mdlCustomer").modal({ backdrop: 'static', keyboard: false, show: true });
+            //alert($("#txtsearchCust").val());
+            //alert($("#Whatyouwant").val());
+            showCustomerModal($("#txtsearchCust").val());            
         });
+
 
 
         $(document).on("click", "#btnemptycart", function () {
@@ -1105,8 +1116,15 @@ function changeColor() {
         //});
 
         $("#btnSearchCust").on("click", function () {
+            
             showCustomerModal($("#txtsearchCustomer").val());
         });
+
+        $("#btnSearchCustomer1").on("click", function () {
+            showCustomerModal($("#txtsearchCustomer1").val());
+        });
+
+        
 
         //$("#btnvoidtransaction").on("click", function () {
         //    showCustomerModal($("#btnvoidtransaction").val());
@@ -1247,7 +1265,7 @@ function changeColor() {
         });
 
         $(document).on("click", "[data-mode=account-topup]", function () {
-            debugger;
+            
             window.location.href = "/Accounts/Topup/" + $(this).attr("data-ref") + "/" + ($("input[name='check-item']:checked").attr("id") == undefined ? "" : $("input[name='check-item']:checked").attr("id").replace("chk-", ""));
         });
 

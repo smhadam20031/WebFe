@@ -32,8 +32,7 @@ namespace app.bsms.Models.Catelogue
 
     public List<ServiceType> lstServiceTypes { get; set; }
 
-    public List<ServiceType> lstServicesTypes1 { get; set; }
-
+    
     public List<Range> lstRanges { get; set; }
 
     public List<ServiceTypeItem> lstServiceTypeItems { get; set; }
