@@ -65,7 +65,8 @@ namespace app.bsms.Controllers.Manage
 			return base.View(redemptions);
 		}
 
-		public ActionResult NextAppointment(string id, string id2)
+                      
+        public ActionResult NextAppointment(string id, string id2)
 		{
 			return base.View();
 		}

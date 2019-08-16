@@ -1054,6 +1054,7 @@ function changeColor() {
 
         //});
 
+
         $(document).on("click", "#btnSearchCustomer", function () {
             //$(".live-search-box").val('');
             $("#mdlCustomer").modal({ backdrop: 'static', keyboard: false, show: true });
@@ -1062,6 +1063,51 @@ function changeColor() {
             showCustomerModal($("#txtsearchCust").val());            
         });
 
+        //$(document).on("click", ".open-AddBookDialog", function () {
+        //    var myBookId = $(this).data('id');
+        //    $(".mdlinvoicenumber #bookId").val(myBookId);
+        //    // As pointed out in comments, 
+        //    // it is unnecessary to have to manually call the modal.
+        //    // $('#addBookDialog').modal('show');
+        //});
+       
+
+        $(document).on("click", "#btninvoicenumber", function () {
+
+            var transnumber = $(this).data('transnumber');
+            var invnumber = $(this).data('invnumber');
+            var custname = $(this).data('custname');
+            //var invamount = $(this).data('invamount');
+            var phone = $(this).data('phone');
+            //invnumber
+            //custname
+            //invamount
+            //phone
+            $("#mdlinvoicenumber").modal({ backdrop: 'static', keyboard: false, show: true });
+            $(".modal-body #transnumber").val(transnumber);
+            $(".modal-body #invnumber").val(invnumber);
+            $(".modal-body #custname").val(custname);
+            $(".modal-body #phone").val(phone);
+            
+
+            //showinvoicedetails($("#txtinvoicenumber").val());
+        });
+
+        //function showinvoicedetails(invoicenumber) {
+        //    $.ajax({
+        //        url: "/Redemption/Getinvoicedetail",
+        //        data: { invoicenumber: invoicenumber },
+        //        type: "GET",
+        //        async: false,
+        //        dataType: "html",
+        //        contentType: "application/json",
+        //        success: function (data) {
+        //            $("#inv-srch-contain").html(data);
+        //            //$(window).scrollTop($('#divServiceType').offset().top);
+
+
+        //        }
+        //    });
 
 
         $(document).on("click", "#btnemptycart", function () {

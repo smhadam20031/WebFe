@@ -548,6 +548,7 @@ namespace app.bsms.Controllers.Sales
                 
                 catelogue.lstServices = app.bsms.api.Service.GetList<app.bsms.Models.Catelogue.Service>("department");              
                 catelogue.lstBrands = app.bsms.api.Service.GetList<Brand>("Brand");
+                
                 catelogue.lstVouchers = app.bsms.api.Service.GetList<Brand>("voucherBrand");
                 catelogue.lstPrepaids = app.bsms.api.Service.GetList<Brand>("prepaidBrand");
                
