@@ -871,7 +871,7 @@ namespace app.bsms.Controllers.Sales
 			{
 				throw exception;
 			}
-			//return actionResult;
+			return actionResult;
 		}
 	}
 }

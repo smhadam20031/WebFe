@@ -402,6 +402,7 @@ namespace app.bsms.Controllers.Sales
             {
                 catelogue.lstItemTypes = app.bsms.api.Service.GetList<ItemType>("prepaid");
             }
+            
             return this.PartialView("_PartialItemType", catelogue);
         }
 

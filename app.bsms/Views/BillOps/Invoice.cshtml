@@ -52,12 +52,44 @@
 
                     <label>Confirmation for void this transaction?</label>
                 </div>
-                <div class="col-3 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidYes"  onclick="href='~/BillOps/VoidInvoice'">Yes</button>
-                    <button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidNo" data-dismiss="modal">No</button>
+                <div class="col-md-8 justify-content-center align-items-center">
+                    <div class="row">
+                        <div class="col-6">User Name : </div>
+                        <div class="col-6"><input type="text" class="text-lg-left form-control-sm" id="txtusername" value="" /> </div>
+                    </div>
+                    <div class="row"><div class="col-6">.</div><div class="col-6"></div></div>
+                    <div class="row">
+                        <div class="col-6">Password </div>
+                        <div class="col-6"><input type="password" class="text-lg-left form-control-sm" id="txtpassword" value=""  /> </div>
+                    </div>
+                    <div class="row"><div class="col-6">.</div><div class="col-6"></div></div>
+                    <div class="row">
+                        <div class="col-6"><button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidYes" >Yes</button></div>
+                        <div class="col-6"><button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidNo" data-dismiss="modal">No</button> </div>
+                    </div>
+
+                    @*<table>
+            <tr>
+                <td>User Name : </td>
+                <td></td>
+                <td><input type="text" id="txtusername"  value="" /> </td>
+            </tr>
+            <tr>
+                <td>Password : </td>
+                <td></td>
+                <td><input type="text" id="txtpassword" value="" /> </td>
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidYes" onclick="href='~/BillOps/VoidInvoice'">Yes</button></td>
+                <td></td>
+                <td><button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidNo" data-dismiss="modal">No</button> </td>
+            </tr>
+        </table>*@
+
+
                 </div>
 
-            </div>
+                </div>
         </div>
     </div>
 </div>

@@ -269,10 +269,10 @@ $(function () {
             LayoutApp.init();
         });
 
-        $(document).on("click", "#btnCapture", function () {
-            $('#mdlCapture').modal('toggle')
-            LayoutApp.init();
-        });
+        //$(document).on("click", "#btnCapture", function () {
+        //    $('#mdlCapture').modal('toggle')
+        //    LayoutApp.init();
+        //});
 
         $(document).on("click", "#btnCaptureClose", function () {
             $('#mdlCapture').modal('toggle')
@@ -463,7 +463,89 @@ $(function () {
             }
         });
 
+        //$(document).on("click", "#btnvoidYes", function () {
+        //    var referenceTreatmentCode = '';
+        //    var arr;
+
+        //    $('#callBy').val('');
+        //    var $this = $(".btn-void");
+
+        //    if ($this.attr("data-line-status") == "VT") {
+        //        var item = {
+        //            staffcode: $this.attr("data-customer"),
+        //            lineStatus: $this.attr("data-line-status"),
+        //            lineType: $this.attr("data-line-type"),
+        //            itemCode: $this.attr("data-code"),
+        //            itemName: $this.attr("data-name"),
+        //            itemQty: parseInt($this.attr("data-quantity")),
+        //            unitPrice: parseFloat($this.attr("data-price")),
+        //            treatmentCode: $this.attr("data-treatmentCode"),
+        //            referenceTreatmentCode: $this.attr("data-treatmentParentCode"),
+        //            transactionNumber: $this.attr("data-transaction"),
+        //            invoiceNumber: $this.attr("data-invoice"),
+        //            subItemCode: "asd",
+        //            username: $("input[name='username']").val(),
+        //            password: $("input[name='password']").val(),
+        //            logdet: "void"
+
+        //        };
+
+        //        $.ajax({
+        //                                    url: "/Redemption/RecallTransaction",
+        //                        type: "POST",
+        //                            data: item,
+        //                                success: function (res) {
+        //                                    if (res.status == 0) {
+        //                                        $("#mdlAlerts").modal({ backdrop: 'static', keyboard: false, show: true });
+        //                                        $("#alert-message").html('Unable to void invoice ' + $this.attr("data-invoice"));
+        //                                        return false;
+        //                                    }
+        //                                    else {
+        //                                        window.location.href = "/BillOps/VoidInvoice/" + $this.attr("data-transaction") + "/" + $this.attr("data-invoice");
+        //                                    }
+        //                                    return true;
+        //                                }
+                           
+        //        });
+        //    }
+        //});
+
+
         $(document).on("click", "#btnvoidYes", function () {
+            var referenceTreatmentCode = '';
+            var arr;
+            $('#callBy').val('');
+            var $this = $(".btn-void");
+
+            var username = $("input[name='username']").val();
+            var password = $("input[name='password']").val();
+            var logdet = "void";
+
+            $.ajax({
+                url: "/Home/CheckSecurity",
+                data: { username, password, logdet },
+                type: "POST",
+                async: false,
+                contentType: "application/json",
+                success: function (res) {
+                    res = JSON.parse(res);
+
+                    if (res.status == 0) {
+
+                        return false;
+                    }
+                    else {
+                        Myvoidtrans();
+                        return true;
+                    }
+                }
+            });
+        });
+
+       
+    
+
+        function Myvoidtrans() {
             var referenceTreatmentCode = '';
             var arr;
 
@@ -484,6 +566,7 @@ $(function () {
                     transactionNumber: $this.attr("data-transaction"),
                     invoiceNumber: $this.attr("data-invoice"),
                     subItemCode: "asd"
+
                 };
 
                 $.ajax({
@@ -503,7 +586,7 @@ $(function () {
                     }
                 });
             }
-        });
+        }
 
         $(document).on("click", ".btn-void", function () {
             $(".live-search-box").val('');
@@ -604,6 +687,7 @@ $(function () {
                 dataType: "html",
                 contentType: "application/x-www-form-urlencoded",
                 success: function (data) {
+                    
                     $("#div" + typ + "Range").html(data);
                     $(window).scrollTop($("#div" + typ + "Range").offset().top);
                 }
@@ -621,6 +705,7 @@ $(function () {
                 dataType: "html",
                 contentType: "application/x-www-form-urlencoded",
                 success: function (data) {
+                    
                     $("#div" + typ + "ItemType").html(data);
                     $(window).scrollTop($("#div" + typ + "ItemType").offset().top);
                 }
@@ -738,7 +823,7 @@ $(function () {
                 return false;
             }
 
-            var len = $('#tblStaffs tr > td:contains(' + $("select[name='cartDetails.staffcode'] option:selected").val() + ') + td:contains(' + $("select[name='cartDetails.staffcode'] option:selected").text() + ')').length
+            var len = $('#tblStaffs tr > td:contains(' + $("select[name='cartDetails.staffcode'] option:selected").val() + ') + td:contains(' + $("select[name='cartDetails.staffcode'] option:selected").text() + ')').length;
 
             if (len == 0) {
                 var ratio = parseFloat(100 / ($('#tblStaffs > tbody > tr').length + 1)).toFixed(2);

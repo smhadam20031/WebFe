@@ -12,6 +12,13 @@
         <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Payments</li>
     </ol>
 </nav>
+<script type="text/javascript">
+    $("document").ready(function () {
+        //window.getElementById("GT1").click();
+        //window.open("~/Payment/Index#GT1");
+        alert("~/Payment/Index#GT1");
+    });
+</script>
 @Html.Raw(@TempData["Message"])
 <div class="row">
     <div class="col-9">
@@ -58,32 +65,35 @@
             {
                 <div class="row">
                     <div class="col-7 text-nowrap">@Resources.Resources.TotalAmount</div>
-                    <div class="col-5 text-right">@Math.Round(Model.cart.transactionDetails.Sum(f => f.itemAmount) + Model.cart.transactionDetails.Sum(f => f.unitDiscount))</div>
+                    <div class="col-5 text-right">@(Model.cart.transactionDetails.Sum(f => f.itemAmount) + Model.cart.transactionDetails.Sum(f => f.unitDiscount))</div>
                 </div>
                 <div class="row">
                     <div class="col-7 text-nowrap">@Resources.Resources.Discount</div>
-                    <div class="col-5 text-right">@Math.Round(Model.cart.transactionDetails.Sum(f => f.unitDiscount))</div>
+                    <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.unitDiscount)</div>
                 </div>
                 <div class="row">
                     <div class="col-7 text-nowrap">@Resources.Resources.Deposit</div>
-                    <div class="col-5 text-right">@(Model.cart.transactionDetails.Sum(f => f.depositAmount))</div>
+                    <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.depositAmount)</div>
                 </div>
                 <div class="row">
                     <div class="col-7 text-nowrap">@Resources.Resources.TransactionAmount</div>
-                    <div class="col-5 text-right">@Math.Round(Model.cart.transactionAmount)</div>
+                    <div class="col-5 text-right">@Model.cart.transactionAmount</div>
                 </div>
                 <div class="row">
                     <div class="col-7 text-nowrap">@Resources.Resources.Outstanding</div>
-                    <div class="col-5 text-right">@Math.Round(Model.cart.outstandingAmount)</div>
+                    <div class="col-5 text-right">@Model.cart.outstandingAmount</div>
                 </div>
                 <div class="row">
                     <div class="col-7 text-nowrap">@Resources.Resources.TotalGST</div>
-                    <div class="col-5 text-right">@Math.Round(Model.cart.transactionDetails.Sum(f => f.gstAmountCollected))</div>
+                    <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.gstAmountCollected)</div>
                 </div>
             }
         </section>
     </div>
 </div>
+
+
+
 <div class="modal fade" id="mdlTrans" tabindex="-1" role="dialog" aria-labelledby="mdlTrans" aria-hidden="true">
         <div class="modal-dialog" role="dialog">
             <div class="modal-content">
