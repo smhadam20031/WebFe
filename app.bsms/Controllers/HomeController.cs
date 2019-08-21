@@ -85,49 +85,7 @@ namespace app.bsms.Controllers
 			return base.View();
 		}
 
-        public ActionResult CheckSecurity(string un,string ps,string logdet)
-        {
-            return JavaScript("alert('Hello world!');");
-            //try
-            //{
-
-
-            //        Service.Parameters.Clear();
-            //        Service.Parameters.Add("userName", un);
-            //        Service.Parameters.Add("password", ps);
-            //        //Service.Parameters.Add("clientCode", model.ClientCode);
-            //        Service.Parameters.Add("sitecode", ((User)this.Session["Login_Details"]).siteCode);
-            //        Service.Parameters.Add("forgotPassword", logdet);
-            //        app.bsms.Models.Account.User list = Service.Get<app.bsms.Models.Account.User>("login");
-            //        if (list != null)
-            //        {
-            //            if (list.siteCode == string.Empty)
-            //            {
-            //                //Alerts.body = "Login Unsuccessfull";
-            //                //Alerts.ErrorMessage = "Invalid Username or Password or Client Code";
-            //                //base.TempData["Message"] = Alerts.ErrorMessage;
-            //                return Json(false);
-            //            }
-            //            else
-            //            {
-            //                //Service.Parameters.Clear();
-            //                //Service.Parameters.Add("siteCode", list.siteCode);
-            //                //list.settings = Service.GetList<Settings>("settings");
-            //                //base.Session["Login_Details"] = list;
-            //                //return base.RedirectToAction("Index", "Dashboard");
-            //                return Json(true);
-            //            }
-            //        }
-
-            //}
-            //catch (Exception exception)
-            //{
-            //    Alerts.body = "Login Unsuccessfull";
-            //    Alerts.ErrorMessage = exception.Message;
-            //    base.TempData["Message"] = Alerts.ErrorMessage;
-            //}
-           //return Json(true);
-        }
+      
 
         public ActionResult LogOut()
 		{

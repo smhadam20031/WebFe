@@ -459,6 +459,7 @@ namespace app.bsms.Controllers.Sales
                 from f in app.bsms.api.Service.GetList<ServiceTypeItem>("serviceItem")
                 orderby f.stockName
                 select f).ToList<ServiceTypeItem>();
+            
             catelogue.lstServiceTypeItems = (
                 from f in list
                 where f.itemType != "COURSE"
@@ -478,6 +479,7 @@ namespace app.bsms.Controllers.Sales
                 from f in list
                 where f.itemType == "COURSE"
                 select f).ToList<ServiceTypeItem>();
+            
             foreach (ServiceTypeItem serviceTypeItem in list)
             {
                 if (!catelogue.lstServiceTypeItems.Exists((ServiceTypeItem f) => f.stockName == serviceTypeItem.stockName))
@@ -505,8 +507,68 @@ namespace app.bsms.Controllers.Sales
             return this.PartialView("_PartialServiceTypeItem", catelogue);
         }
 
+
+        public ActionResult NewGetServiceTypeItem(string typeID)
+        {
+
+            Catelogue catelogue = new Catelogue();
+            app.bsms.api.Service.Parameters.Clear();
+            app.bsms.api.Service.Parameters.Add("siteCode", ((app.bsms.Models.Account.User)base.Session["Login_Details"]).siteCode);
+            app.bsms.api.Service.Parameters.Add("serviceTypeName", typeID);
+
+            List<ServiceTypeItem> list = (
+                from f in app.bsms.api.Service.GetList<ServiceTypeItem>("serviceItem")
+                orderby f.stockName
+                select f).ToList<ServiceTypeItem>();
+
+            catelogue.lstServiceTypeItems = (
+                from f in list
+                where f.itemType != "COURSE"
+                select new ServiceTypeItem()
+                {
+                    stockCode = f.stockCode,
+                    stockName = f.stockName,
+                    itemPrice = f.itemPrice,
+                    itemType = f.itemType,
+                    workCommPoints = f.workCommPoints,
+                    salesCommPoints = f.salesCommPoints,
+                    itemSinglePrice = f.itemPrice,
+                    itemSingleCode = f.stockCode,
+                    itemBoth = false
+                }).ToList<ServiceTypeItem>();
+            list = (
+                from f in list
+                where f.itemType == "COURSE"
+                select f).ToList<ServiceTypeItem>();
+
+            foreach (ServiceTypeItem serviceTypeItem in list)
+            {
+                if (!catelogue.lstServiceTypeItems.Exists((ServiceTypeItem f) => f.stockName == serviceTypeItem.stockName))
+                {
+                    catelogue.lstServiceTypeItems.Add(new ServiceTypeItem()
+                    {
+                        stockName = serviceTypeItem.stockName,
+                        itemCourseCode = serviceTypeItem.stockCode,
+                        itemCoursePrice = serviceTypeItem.itemPrice,
+                        itemType = "COURSE",
+                        itemBoth = false
+                    });
+                }
+                else
+                {
+                    ServiceTypeItem serviceTypeItem1 = catelogue.lstServiceTypeItems.SingleOrDefault<ServiceTypeItem>((ServiceTypeItem f) => f.stockName == serviceTypeItem.stockName);
+                    serviceTypeItem1.itemSingleCode = serviceTypeItem1.stockCode;
+                    serviceTypeItem1.itemSinglePrice = serviceTypeItem1.itemPrice;
+                    serviceTypeItem1.itemCourseCode = serviceTypeItem.stockCode;
+                    serviceTypeItem1.itemCoursePrice = serviceTypeItem.itemPrice;
+                    serviceTypeItem1.itemType = "BOTH";
+                    serviceTypeItem1.itemBoth = true;
+                }
+            }
+            return this.PartialView("_PartialServiceTypeItem", catelogue);
+        }
         //[HttpPost]
-       
+
 
         //public ActionResult GetServiceType(string serviceID)
         //{

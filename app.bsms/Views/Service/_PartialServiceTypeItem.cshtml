@@ -1,5 +1,9 @@
 ﻿@model app.bsms.Models.Catelogue.Catelogue
 
+    @*<script>
+    alert(@Model.lstServiceTypeItems.Count)
+    </script>*@
+
 <ul class="list-unstyled">
     <li class="media">
         <div class="media-body">
@@ -19,6 +23,7 @@
         <div class="media-body">
             <div class="row">
                 <div class="col-8">@x.stockName</div>
+                
             @if (x.itemType == "SINGLE")
             {
                 <div class="col-2 text-center">

@@ -48,6 +48,7 @@ function showServiceTypes(id) {
 
 
 function showServiceItemTypes(id) {
+    //alert(id);
     $.ajax({
         url: "/Service/GetServiceTypeItem",
         data: { typeID: id },
@@ -56,6 +57,27 @@ function showServiceItemTypes(id) {
         dataType: "html",
         contentType: "application/json",
         success: function (data) {
+            alert(data);
+            $("#divServiceItemType").html(data);
+            $(window).scrollTop($('#divServiceItemType').offset().top);
+        }
+    });
+    //contentType: "application/x-www-form-urlencoded",
+}
+
+function MyshowServiceItemTypes(id) {
+    //var searchname = $("input[name='txtsearchitems1']").val();
+    //alert(id);
+    //alert(searchname);
+    $.ajax({
+        url: "/Service/NewGetServiceTypeItem",
+        data: { typeID: id },
+        type: "GET",
+        async: false,
+        dataType: "html",
+        contentType: "application/json",
+        success: function (data) {
+            //alert(data);
             $("#divServiceItemType").html(data);
             $(window).scrollTop($('#divServiceItemType').offset().top);
         }
@@ -517,29 +539,24 @@ $(function () {
             $('#callBy').val('');
             var $this = $(".btn-void");
 
-            var username = $("input[name='username']").val();
-            var password = $("input[name='password']").val();
+
+            var username = $("input[name='txtusername']").val();
+            var password = $("input[name='txtpassword']").val();
             var logdet = "void";
 
             $.ajax({
-                url: "/Home/CheckSecurity",
-                data: { username, password, logdet },
-                type: "POST",
-                async: false,
-                contentType: "application/json",
-                success: function (res) {
-                    res = JSON.parse(res);
-
-                    if (res.status == 0) {
-
-                        return false;
-                    }
-                    else {
-                        Myvoidtrans();
-                        return true;
-                    }
+                url: '/BillOps/CheckSecurity',
+                data: { un: username, ps: password, logdet:logdet },
+                success: function (data) {                   
+                    Myvoidtrans();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    
+                    alert(xhr.responseText);
                 }
             });
+
+            
         });
 
        
