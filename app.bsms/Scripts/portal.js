@@ -12,6 +12,24 @@ function ajaxError(data) {
     //window.location.href = data;
 }
 
+function showCustomerModal1(customer) {
+    $.ajax({
+        url: "/Cart/GetCustomerModal1",
+        data: { customer: customer },
+        type: "GET",
+        async: false,
+        dataType: "html",
+        contentType: "application/json",
+        success: function (data) {
+            $("#cust-srch-contain1").html(data);
+            //$(window).scrollTop($('#divServiceType').offset().top);
+
+
+        }
+    });
+    //contentType: "application/x-www-form-urlencoded",
+}
+
 function showCustomerModal(customer) {
     $.ajax({
         url: "/Cart/GetCustomerModal",
@@ -46,9 +64,25 @@ function showServiceTypes(id) {
     //contentType: "application/x-www-form-urlencoded",
 }
 
+function searchServiceTypes() {
+    $.ajax({
+       //url: "/Service/GetServiceSearch",
+        
+        url: "/Service/GetServiceTypeItem1",
+        data: { text: $("#txtsearchitems").val() },
+        type: "GET",
+        async: false,
+        dataType: "html",
+        contentType: "application/json",
+        success: function (data) {
+            $("#divServiceItemType").html(data);
+            $(window).scrollTop($('#divServiceItemType').offset().top);
+        }
+    });
+    //contentType: "application/x-www-form-urlencoded",
+}
 
 function showServiceItemTypes(id) {
-    //alert(id);
     $.ajax({
         url: "/Service/GetServiceTypeItem",
         data: { typeID: id },
@@ -57,27 +91,6 @@ function showServiceItemTypes(id) {
         dataType: "html",
         contentType: "application/json",
         success: function (data) {
-            alert(data);
-            $("#divServiceItemType").html(data);
-            $(window).scrollTop($('#divServiceItemType').offset().top);
-        }
-    });
-    //contentType: "application/x-www-form-urlencoded",
-}
-
-function MyshowServiceItemTypes(id) {
-    //var searchname = $("input[name='txtsearchitems1']").val();
-    //alert(id);
-    //alert(searchname);
-    $.ajax({
-        url: "/Service/NewGetServiceTypeItem",
-        data: { typeID: id },
-        type: "GET",
-        async: false,
-        dataType: "html",
-        contentType: "application/json",
-        success: function (data) {
-            //alert(data);
             $("#divServiceItemType").html(data);
             $(window).scrollTop($('#divServiceItemType').offset().top);
         }
@@ -255,10 +268,15 @@ $(function () {
             }
         }
 
-        if ($('#cartDetails_isFOC').is(':checked'))
+        if ($('#cartDetails_isFOC').is(':checked')) {
             $("#divFOC").show();
-        else
+            //$("#divdiscount").hide();
+        }
+        else {
             $("#divFOC").hide();
+            //$("#divdiscount").show();
+        }
+            //$("#divFOC").show();
 
         $("#show_hide_clientcode span").on("click", function (event) {
             event.preventDefault();
@@ -291,10 +309,11 @@ $(function () {
             LayoutApp.init();
         });
 
-        //$(document).on("click", "#btnCapture", function () {
-        //    $('#mdlCapture').modal('toggle')
-        //    LayoutApp.init();
-        //});
+
+        $(document).on("click", "#btnAddQty", function () {
+            alert($("input[name='txtQty']").val())
+            LayoutApp.close();
+        });
 
         $(document).on("click", "#btnCaptureClose", function () {
             $('#mdlCapture').modal('toggle')
@@ -419,7 +438,7 @@ $(function () {
             }
             else {
 
-                //$cartBadge.text(parseInt($cartBadge.text()) + 1);
+                $cartBadge.text(parseInt($cartBadge.text()) + 1);
 
                 if ($('#cart_details').val() == "" || $('#cart_details').val() == undefined || $('#cart_details').val() == "null")
                     arr = [];
@@ -435,22 +454,26 @@ $(function () {
                     unitPrice: parseFloat($(this).attr("data-price")),
                     referenceTreatmentCode: ''
                 };
-                
-                var iflg;
-                iflg = 0;
-                for (var i = 0; i < arr.length; i++)
-                    {   
-                        if (data.itemCode == arr[i].itemCode) {
-                            iflg = 1;
-                            break;}
-                    
-                    }
-                    if (iflg == 0)
-                    {
+
+
                         arr.push(data);
                         $('#cart_details').val(JSON.stringify(arr));
-                        $cartBadge.text(parseInt($cartBadge.text()) + 1);
-                    }
+                        
+                //var iflg;
+                //iflg = 0;
+                //for (var i = 0; i < arr.length; i++)
+                //    {   
+                //        if (data.itemCode == arr[i].itemCode) {
+                //            iflg = 1;
+                //            break;}
+                    
+                //    }
+                //    if (iflg == 0)
+                //    {
+                //        arr.push(data);
+                //        $('#cart_details').val(JSON.stringify(arr));
+                //        $cartBadge.text(parseInt($cartBadge.text()) + 1);
+                //    }
 
                     
                 
@@ -643,6 +666,39 @@ $(function () {
             });
         });
 
+        //$('#txtmyqty').change(function () {
+        //}
+
+        //$(document).on("click", "[data-fun=decrease]", function () {
+        //    var $number = $('input[name="' + $(this).attr("data-target") + '"]');
+        //    var value = parseInt($number.val(), 10);
+        //    value = isNaN(value) ? 0 : value;
+
+        //    var minVal;
+        //    if ($(this).attr("data-zero") == "true")
+        //        minVal = 0;
+        //    else
+        //        minVal = 1;
+
+        //    value < minVal ? value = minVal : '';
+
+        //    if (value == minVal) {
+        //        $(this).addClass("disabled");
+        //    }
+        //    else
+        //        value--;
+
+        //    $number.val(value);
+
+        //    if ($(this).attr("data-param") != '') {
+        //        var $source = $('input[name="' + $(this).attr("data-param").split(',')[0].trim() + '"]');
+        //        var $result = $('input[name="' + $(this).attr("data-param").split(',')[1].trim() + '"]');
+
+        //        $result.val(value * parseInt(isNaN($source.val()) ? 0 : $source.val(), 10));
+        //    }
+        //});
+
+
         $(document).on("click", "[data-fun=decrease]", function () {
             var $number = $('input[name="' + $(this).attr("data-target") + '"]');
             var value = parseInt($number.val(), 10);
@@ -766,11 +822,23 @@ $(function () {
             $("input[name='cartDetails.FOCReason']").val('');
             $("input[name='cartDetails.FOCQuantity']").val('0');
 
-            if ($(this).is(":checked"))
+            if ($(this).is(":checked")) {
                 $("#divFOC").show();
-            else
+                $("#divdiscount").hide();
+            }
+            else {
                 $("#divFOC").hide();
+                $("#divdiscount").show();
+            }
         });
+
+        //$('#cartDetails_autoProportionate').change(function () {
+       
+        //    if ($(this).is(":checked")) { }
+        //    else  { }
+        //});
+
+        
 
         $(document).on("click", "#btnAddTreatmentStaff", function () {
             var message = '';
@@ -822,7 +890,12 @@ $(function () {
             var message = '';
             var per = 0;
             var amt = 0;
-
+            var ratio = 0;
+           // var checkBox = document.getElementById("propor");
+            //checkBox.checked
+            var checkBox = $('#cartDetails_autoProportionate').is(':checked');
+            //alert(checkBox);
+          
             if ($("select[name='cartDetails.staffcode'] option:selected").val().trim() == '')
                 message += '<p>Valid Staff is required</p>';
             /*
@@ -843,8 +916,14 @@ $(function () {
             var len = $('#tblStaffs tr > td:contains(' + $("select[name='cartDetails.staffcode'] option:selected").val() + ') + td:contains(' + $("select[name='cartDetails.staffcode'] option:selected").text() + ')').length;
 
             if (len == 0) {
-                var ratio = parseFloat(100 / ($('#tblStaffs > tbody > tr').length + 1)).toFixed(2);
+                
+                if (checkBox == true) {
 
+                    ratio = parseFloat(100 / ($('#tblStaffs > tbody > tr').length + 1)).toFixed(0);
+                }
+                else { ratio = $("input[name='cartDetails.ratio']").val();}
+                
+                 
                 $('#tblStaffs tbody').append(
                     "<tr class=\"row\">" +
                     "<td class=\"col-3\">" + $("select[name='cartDetails.staffcode'] option:selected").val() + "</td>" +
@@ -852,26 +931,37 @@ $(function () {
                     "<td class=\"col-2\">" + ratio + "</td>" +
                     "<td class=\"col-2\"><button type=\"button\" class=\"btn btn-flat\" data-mode=\"delete\"><i class=\"fa fa-trash fa-2x\"></i></button></td>" +
                     "</tr>");
-
-                $('#tblStaffs > tbody > tr').children(':nth-child(3)').text(ratio);
-
+                if (checkBox == true) {
+                    $('#tblStaffs > tbody > tr').children(':nth-child(3)').text(ratio);
+                }
                 var itmArray = [];
 
-                $('#tblStaffs > tbody > tr').each(function () {
-                    if (parseFloat($(this).children(':nth-child(3)').text().trim()) > 0) {
-                        var data = {
-                            staffCode: $(this).children(':first-child').text().trim(),
-                            staffName: $(this).children(':nth-child(2)').text().trim(),
-                            ratio: parseFloat($(this).children(':nth-child(3)').text().trim())
-                        };
+                var data = {
+                    staffCode: $("input[name='cartDetails.staffcode']").val(),
+                    staffName: $("input[name='cartDetails.staffname']").val(),
+                    ratio: ratio
+                            
+                };
+                if (checkBox == true) {
+                    $('#tblStaffs > tbody > tr').each(function () {
+                        
+                        if (parseFloat($(this).children(':nth-child(3)').text().trim()) > 0) {
+                            var data = {
+                                staffCode: $(this).children(':first-child').text().trim(),
+                                staffName: $(this).children(':nth-child(2)').text().trim(),
+                                ratio: parseFloat($(this).children(':nth-child(3)').text().trim())
+                            };
 
-                        itmArray.push(data);
-                    }
-                });
-
+                            itmArray.push(data);
+                        }
+                    });
+                }
+                else {
+                    itmArray.push(data);
+                }
+                
                 $("input[name='cartDetails.ratio']").val('0');
                 $("select[name='cartDetails.staffcode']").val('');
-
                 $("input[name='cartDetails.strStaffs']").val(JSON.stringify(itmArray));
             }
         });
@@ -1156,6 +1246,24 @@ function changeColor() {
 
         //});
 
+       
+        //function mysearchcust() {
+        //    $("#mdlCustomer").modal({ backdrop: 'static', keyboard: false, show: true });
+        //    //alert($("#txtsearchCust").val());
+        //    //alert($("#Whatyouwant").val());
+        //    showCustomerModal($("#txtsearchCust").val());
+        //}
+
+        $(document).on("keyup", "#txtsearchCust", function () {
+            //$(".live-search-box").val('');
+            $("#mdlCustomer1").show();
+            //$("#mdlCustomer1").modal({ backdrop: 'static', keyboard: false, show: true });
+            //alert($("#txtsearchCust").val());
+            //alert($("#Whatyouwant").val());
+            showCustomerModal1($("#txtsearchCust").val());
+        });
+
+
 
         $(document).on("click", "#btnSearchCustomer", function () {
             //$(".live-search-box").val('');
@@ -1311,6 +1419,23 @@ function changeColor() {
             //});
             //$("#mdlCustomer").modal('toggle');
 
+        });
+
+        $(document).on("click", "#btnCustomer1", function () {
+            $('input[name="' + $(this).attr("data-value-target") + '"]').val($(this).attr("data-value"));
+            $('input[name="' + $(this).attr("data-name-target") + '"]').val($(this).attr("data-name"));
+            //$.ajax({
+            //    data: $("#frmStaff").serialize(),
+            //    type: "POST",
+            //    dataType: "json",
+            //    url: "/Cart/Staff/",
+            //    success: function (data) {
+            //        window.location.href = data;
+            //    }
+            //});
+            $("#mdlCustomer1").hide();
+            //$("#mdlcustomer1").modal('toggle');
+            
         });
 
         $(document).on("click", "#btnCustomer", function () {

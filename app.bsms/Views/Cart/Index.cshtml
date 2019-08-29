@@ -12,7 +12,7 @@
 </nav>
 
 @*<div class="pull-right">*@
-<div >
+<div>
     <div class="row">
         <div class="col-sm-2">
         </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-sm-2">
             @using (Html.BeginForm("Delete", "Cart", FormMethod.Post, new { name = "frmDelete", id = "frmDelete", role = "form" }))
-        {
+            {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
 
@@ -39,86 +39,69 @@
                 <button type="submit" class="btn btn-primary btn-block btn-lg" value="Delete" name="Delete">@Resources.Resources.EmptyCart</button>
                 @*<button type="submit" class="btn btn-primary btn-block btn-lg" value="Delete" name="Delete" alt="submit" style="background: url(../../images/emptycart.png); background-size: cover;">@Resources.Resources.EmptyCart</button>*@
             }
-            </div>
-        </div>
-        <div class="clearfix">&nbsp;</div>
-    </div>
-        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { name = "frmCart", id = "frmCart", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-            @Html.Raw(@TempData["Message"])
-
-            @Html.HiddenFor(m => m.cart.userID)
-            @Html.HiddenFor(m => m.cart.siteCode)
-            @Html.HiddenFor(m => m.cart.salesStatus)
-            @Html.HiddenFor(m => m.cart.salesType)
-            @Html.HiddenFor(m => m.cart.customerCode)
-            @Html.HiddenFor(m => m.cart.staffCode)
-            @Html.HiddenFor(m => m.cart.cartToken)
-<div class="row">
-    <div class="col">
-            
-                @Html.LabelFor(m => m.cart.customerName)
-        <div class="input-group">
-            @*@Html.TextBoxFor(m => m.cart.customerName,  new { @class = "form-control form-control-lg no-right-radius" })*@
-            @Html.TextBoxFor(m => m.cart.customerName,  new { @class = "form-control form-control-lg no-right-radius" , @id="txtsearchCust"})
-            @*<input type="text" id="txtsearchCust" class="form-control live-search-box">*@
-            <div class="input-group-append">
-                <button id="btnSearchCustomer" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
-            </div>
-        </div>
-     </div>
-        @*<div class="col">
-                    <div class="form-group">
-                        <div class="modal-body">
-
-                            <ul class="list-group list-group-flush live-search-list">
-
-                                @foreach (var item in Model.lstCustomer)
-                                {
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                @item.customerName
-                                                <small class="form-text text-muted">@item.customerCode</small>
-                                            </div>
-                                            <div class="col-6 justify-content-center align-items-center">
-                                                <button class="btn btn-primary btn-block" data-name="@item.customerName" data-name-target="cart.customerName" data-value="@item.customerCode" data-value-target="cart.customerCode" data-code="@item.customerCode">@Resources.Resources.Apply</button>
-                                            </div>
-
-                                        </div>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                
-            
-            @Html.ValidationMessageFor(m => m.cart.customerName)
-        </div>*@
-    
-    
-
-        <div class="col">
-            <button id="btnSearchStaff" class="btn btn-lg btn-primary pull-right mt-5" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Staff</button>
-            @*<div class="form-group">
-                @Html.LabelFor(m => m.cart.staffName)
-                <div class="input-group">
-                    @Html.TextBoxFor(m => m.cart.staffName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
-                    <div class="input-group-append">
-                        <button id="btnSearchStaff" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
-                    </div>
-                </div>
-            </div>
-            @Html.ValidationMessageFor(m => m.cart.staffName)*@
         </div>
     </div>
     <div class="clearfix">&nbsp;</div>
-    if (Model.cart.transactionDetails != null)
-    {
-        foreach (var x in Model.cart.transactionDetails)
-        {
+</div>
+@using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { name = "frmCart", id = "frmCart", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Raw(@TempData["Message"])
+
+    @Html.HiddenFor(m => m.cart.userID)
+    @Html.HiddenFor(m => m.cart.siteCode)
+    @Html.HiddenFor(m => m.cart.salesStatus)
+    @Html.HiddenFor(m => m.cart.salesType)
+    @Html.HiddenFor(m => m.cart.customerCode)
+    @Html.HiddenFor(m => m.cart.staffCode)
+    @Html.HiddenFor(m => m.cart.cartToken)
+    <div class="row">
+        <div class="col">
+
+            @Html.LabelFor(m => m.cart.customerName)
+            <div class="input-group">
+                @*@Html.TextBoxFor(m => m.cart.customerName,  new { @class = "form-control form-control-lg no-right-radius" })*@
+                @Html.TextBoxFor(m => m.cart.customerName, new { @class = "form-control form-control-lg no-right-radius", @id = "txtsearchCust" })
+                @*<input type="text" id="txtsearchCust" class="form-control live-search-box">*@
+                <div class="input-group-append">
+                    <button id="btnSearchCustomer1" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col">
+            @*class="btn btn-lg btn-primary pull-right mt-5"*@
+            <button id="btnSearchStaff" class="btn  btn-primary2 pull-right mt-5" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Staff</button>
+            @*<div class="form-group">
+            @Html.LabelFor(m => m.cart.staffName)
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.cart.staffName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
+                <div class="input-group-append">
+                    <button id="btnSearchStaff" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+                </div>
+            </div>
+        </div>
+        @Html.ValidationMessageFor(m => m.cart.staffName)*@
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-5">
+                @*<div class="form-group">*@
+                    <div class="modal-body" id="mdlCustomer1" aria-labelledby="mdlCustomer1">
+                        <ul class="list-group list-group-flush live-search-list" id="cust-srch-contain1"></ul>
+                        </div>
+                    @*</div>*@
+            </div>
+        </div>
+    
+            <div class="clearfix">&nbsp;</div>
+            <div class="clearfix"><h5>Click to Edit</h5></div>
+            if (Model.cart.transactionDetails != null)
+            {
+            foreach (var x in Model.cart.transactionDetails)
+            {
             <div class="card">
                 <div class="card-body">
                     <div class="media">
@@ -184,71 +167,81 @@
                                         }
                                         @if (x.lineType == "PRODUCT")
                                         {
-                                            <a role="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mdlHold" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">@Resources.Resources.Hold</a>
+                                            <a role="button" class="btn btn-primary2 btn-lg" data-toggle="modal" data-target="#mdlHold" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">@Resources.Resources.Hold</a>
                                         }
-                                        <a role="button" class="btn btn-primary btn-lg" href="/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)">@Resources.Resources.Edit</a>
-                                        <button type="button" class="btn btn-primary btn-lg" data-url="/Cart/DeleteItem" data-mode="deleteCart" data-value="@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)" data-code="@x.itemCode">@Resources.Resources.Delete</button>
+
+                                        @*onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=no,resizable=no,width=850,height=550,top=10, left=300,position=absolute');"*@
+                                        <button type="button" class="btn btn-primary2" onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</button>
+
+                                        @*<a role="button" class="btn btn-primary btn-lg" href="/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)">@Resources.Resources.Edit</a>*@
+                                        <button type="button" class="btn btn-primary2" data-url="/Cart/DeleteItem" data-mode="deleteCart" data-value="@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)" data-code="@x.itemCode"><i class="fa fa-trash fa-2x"></i></button>
                                     </div>
                                 }
                                 else
                                 {
-                                    <div class="pull-right">
+                            <div class="pull-right">
 
-                                        @*Yoonus Adding staff picture*@
-                                        @if (x.salesStaffDetails != null)
+                                @*Yoonus Adding staff picture*@
+                                @if (x.salesStaffDetails != null)
+                                {
+                                    foreach (var itm in x.salesStaffDetails)
+                                    {
+                                        var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itm.staffCode + ".jpg";
+                                        <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
+                                    }
+                                }
+
+                                @if (x.lineType == "COURSE")
+                                {
+                                    if (x.courseDetails != null)
+                                    {
+                                        <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/course.png" style="width:50px;" /></a>
+                                    }
+                                }
+                                @if (x.lineType == "PACKAGE")
+                                {
+                                    if (x.courseDetails != null)
+                                    {
+                                        <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:50px;" /></a>
+                                    }
+                                }
+                                @if (x.isHoldItem)
+                                {
+                                    <img src="~/images/holdproduct.png" style="width:50px;" />
+                                }
+                                @if (x.lineType == "TD")
+                                {
+                                    if (x.courseDetails != null)
+                                    {
+                                        <img src="~/images/td.png" style="width:50px;" />
+                                    }
+                                }
+                                @if (x.courseDetails != null)
+                                {
+                                    foreach (var item in x.courseDetails)
+                                    {
+                                        if (item.treatmentStaffDetails != null)
                                         {
-                                            foreach (var itm in x.salesStaffDetails)
+                                            foreach (var itemtreat in item.treatmentStaffDetails)
                                             {
-                                                var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itm.staffCode + ".jpg";
+                                                var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itemtreat.staffCode + ".jpg";
                                                 <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
                                             }
                                         }
+                                    }
+                                }
+                                @if (x.lineType == "PRODUCT")
+                                {
+                                    @*class= "btn btn-primary btn-lg"*@
+                                    <a role="button" class="btn btn-primary2" data-toggle="modal" data-target="#mdlHold" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">@Resources.Resources.Hold</a>
+                                }
+                                <button type="button" class="btn btn-primary2" onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</button>
+                                        @*<a role="button" class="btn btn-primary1 " onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</a>*@
+                                <button type="button" class="btn btn-primary2" data-url="/Cart/DeleteItem" data-mode="deleteCart" data-value="@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)" data-code="@x.itemCode"><i class="fa fa-trash fa-2x"></i></button>
+                                @*onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');"*@
 
-                                        @if (x.lineType == "COURSE")
-                                        {
-                                            if (x.courseDetails != null)
-                                            {
-                                                <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/course.png" style="width:50px;" /></a>
-                                            }
-                                        }
-                                        @if (x.lineType == "PACKAGE")
-                                        {
-                                            if (x.courseDetails != null)
-                                            {
-                                                <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:50px;" /></a>
-                                            }
-                                        }
-                                        @if (x.isHoldItem)
-                                        {
-                                            <img src="~/images/holdproduct.png" style="width:50px;" />
-                                        }
-                                        @if (x.lineType == "TD")
-                                        {
-                                            if (x.courseDetails != null)
-                                            {
-                                                <img src="~/images/td.png" style="width:50px;" />
-                                            }
-                                        }
-                                        @if (x.courseDetails != null)
-                                        {
-                                            foreach (var item in x.courseDetails)
-                                            {
-                                                if (item.treatmentStaffDetails != null)
-                                                {
-                                                    foreach (var itemtreat in item.treatmentStaffDetails)
-                                                    {
-                                                        var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itemtreat.staffCode + ".jpg";
-                                                        <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        @if (x.lineType == "PRODUCT")
-                                        {
-                                            <a role="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mdlHold" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">@Resources.Resources.Hold</a>
-                                        }
-                                        <a role="button" class="btn btn-primary btn-lg" href="/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)">@Resources.Resources.Edit</a>
-                                    </div>
+                                @*<a role="button" class="btn btn-primary btn-lg" href="/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)">@Resources.Resources.Edit</a>*@
+                            </div>
                                 }
                             </div>
                             <h6 class="card-subtitle mb-2 text-muted">@x.itemCode</h6>
@@ -256,7 +249,7 @@
                     </div>
                     @if (x.lineType == "COURSE")
                     {
-                        if (x.courseDetails != null)
+                        if (x.courseDetails != null && x.itemCode != null)
                         {
                             @*<a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode">View Course Schedule</a>*@
                             @*<a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:100px;"/></a>*@
@@ -316,11 +309,18 @@
                         <div class="col text-center"><b>@Resources.Resources.Discount</b></div>
                         <div class="col text-center"><b>@Resources.Resources.TotalAmount</b></div>
                         <div class="col text-center"><b>@Resources.Resources.FOC</b></div>
-                        @*<div class="col text-center"><b>@Resources.Resources.StaffName</b></div>*@
                         <div class="col text-center"><b>@Resources.Resources.StaffName</b></div>
+                        @*<div class="col text-center"><b>@Resources.Resources.StaffName</b></div>*@
                     </div>
+                    @*<script type="text/javascript">
+                            function popitup() {
+                                        newwindow = window.open("/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)", "_blank", "directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=no,resizable=yes,width=500,height=300,top=10, left=10,position=absolute");
+                                    }
+                        </script>*@
                     <div class="row">
-                        <div class="col text-center">@x.itemQty</div>
+                        @*<div class="col text-center" onclick="qtyclick('@x.itemCode')" title="Click to edit Quantity">@x.itemQty</div>*@
+
+                        <div class="col text-center" onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=yes,width=850,height=550,top=10,left=300,position=absolute');" title="Click to edit Quantity">@x.itemQty</div>
                         <div class="col text-center">@x.unitPrice</div>
                         <div class="col text-center">@x.depositAmount</div>
                         <div class="col text-center">@x.unitDiscount</div>
@@ -364,13 +364,13 @@
                                 <span>@x.itemAmount</span>
                             }
                         </div>
-                        <div class="col text-center">@(x.isFOC == false ? string.Empty : Resources.Resources.FOC)</div>
+                        <div class="col text-center" title="Click to FOC">@(x.isFOC == false ? string.Empty : Resources.Resources.FOC)</div>
                         <div class="col text-center">
                             @if (x.salesStaffDetails != null)
                             {
                                 foreach (var itm in x.salesStaffDetails)
                                 {
-                                    <p>@itm.staffName</p>
+                                    <p onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');" title="Click to edit Quantity">@itm.staffName</p>
                                 }
                             }
                         </div>
@@ -378,205 +378,306 @@
                 </div>
             </div>
             <div class="clearfix">&nbsp;</div>
-        }
-    }
-    <div class="clearfix">&nbsp;</div>
-    <div class="row">
-        <div class="col-8">&nbsp;</div>
-        <div class="col-4">
-            <section>
-                <h4>@Resources.Resources.GrandTotal</h4>
-                <hr />
-                @if (Model.cart != null)
-                {
-                    <div class="row">
-                        <div class="col-7 text-nowrap">@Resources.Resources.TotalAmount</div>
-                        <div class="col-5 text-right">@(Model.cart.transactionDetails.Sum(f=>f.itemAmount) + Model.cart.transactionDetails.Sum(f => f.unitDiscount))</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-nowrap">@Resources.Resources.Discount</div>
-                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f=>f.unitDiscount)</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-nowrap">@Resources.Resources.Deposit</div>
-                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f=> f.depositAmount)</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-nowrap">@Resources.Resources.TotalGST</div>
-                        <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f=>f.gstAmountCollected)</div>
-                    </div>
-                }
-            </section>
-        </div>
-    </div>
-    <div class="clearfix">&nbsp;</div>
-    <div class="row">
-        <div class="col">
-            <div class="btn-group fluid btn-group-lg" role="group" aria-label="">
-                <button type="submit" class="btn btn-primary fluid btn-lg" value="Pay" name="Pay">@Resources.Resources.CheckOut</button>
-                <button type="button" class="btn btn-primary fluid btn-lg" id="btnSuspend">@Resources.Resources.Suspend</button>
-                @*<button type="submit" class="btn btn-primary fluid btn-lg" value="Void" name="Void">Void</button>*@
-            </div>
-        </div>
-    </div>
-}
-<div class="clearfix">&nbsp;</div>
-
-<div class="modal fade" id="mdlCustomer" tabindex="-1" role="dialog" aria-labelledby="mdlCustomer" aria-hidden="true">
-    <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                @*<div class="form-group">
-                    <label for="txtsearchCustomer">@Resources.Resources.CustName</label>
-                    <input type="text" class="form-control live-search-box" id="txtsearchCustomer">
-                </div>
-                <div>
-                    <button id="btnSearchCust" class="btn btn-primary fluid btn-lg">@Resources.Resources.Search</button>
-                </div>*@
-                <ul class="list-group list-group-flush live-search-list" id="cust-srch-contain">
-                    @*    @foreach (var x in Model.lstCustomer)
+            }
+            }
+            <div class="clearfix">&nbsp;</div>
+            <div class="row">
+                <div class="col-8">&nbsp;</div>
+                <div class="col-4">
+                    <section>
+                        <h4>@Resources.Resources.GrandTotal</h4>
+                        <hr />
+                        @if (Model.cart != null)
                         {
-                        <li class="list-group-item">
                             <div class="row">
-                                <div class="col-9">
-                                    @x.customerName
-                                    <small class="form-text text-muted">@x.customerCode</small>
-                                </div>
-                                <div class="col-3 justify-content-center align-items-center">
-                                    <button type="button" class="btn btn-lg btn-block btn-primary" data-name="@x.customerName" data-name-target="cart.customerName" data-value="@x.customerCode" data-value-target="cart.customerCode" id="btnCustomer">
-                                        @Resources.Resources.Apply
-                                    </button>
-                                </div>
+                                <div class="col-7 text-nowrap">@Resources.Resources.TotalAmount</div>
+                                <div class="col-5 text-right">@(Model.cart.transactionDetails.Sum(f => f.itemAmount) + Model.cart.transactionDetails.Sum(f => f.unitDiscount))</div>
                             </div>
-                        </li>
-                        }*@
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="mdlStaff" tabindex="-1" role="dialog" aria-labelledby="mdlStaff" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            @using (Html.BeginForm("Staff", "Cart", FormMethod.Post, new { name = "frmStaff", id = "frmStaff", role = "form" }))
-            {
-            <div class="modal-body">
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
-                @Html.HiddenFor(m => m.cart.userID)
-                @Html.HiddenFor(m => m.cart.siteCode)
-                @Html.HiddenFor(m => m.cart.cartToken)
-                @Html.HiddenFor(m => m.cart.customerCode)
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.cartDetails.staffcode)
-                            @Html.DropDownListFor(m => m.cartDetails.staffcode, new SelectList(Model.lstStaff, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
-                            @Html.ValidationMessageFor(m => m.cartDetails.staffcode)
-                        </div>
-                    </div>
-                </div>
-                @*<div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.cartDetails.ratio)
-                            @Html.TextBoxFor(m => m.cartDetails.ratio, new { @class = "form-control form-control-lg text-right" })
-                            @Html.ValidationMessageFor(m => m.cartDetails.ratio)
-                        </div>
-                    </div>
-                </div>*@
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddStaff">@Resources.Resources.Save</button>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="table-responsive small p-3">
-                            <table class="table table-striped" id="tblStaffs">
-                                <thead>
-                                    <tr class="row">
-                                        <th class="col-3" scope="col">@Resources.Resources.StaffCode</th>
-                                        <th class="col-5" scope="col">@Resources.Resources.StaffName</th>
-                                        <th class="col-2" scope="col">@Resources.Resources.Ratio</th>
-                                        <th class="col-2" scope="col">@Resources.Resources.Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (Model.cartDetails.salesStaffDetails != null)
-                                    {
-                                        foreach (var item in Model.cartDetails.salesStaffDetails)
-                                        {
-                                            <tr class="row">
-                                                <td class="col-3" scope="col">@item.staffCode</td>
-                                                <td class="col-5">@item.staffName</td>
-                                                <td class="col-2">@item.ratio</td>
-                                                <td class="col-2">
-                                                    <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        @Html.HiddenFor(m => m.cartDetails.strStaffs)
-                    </div>
+                            <div class="row">
+                                <div class="col-7 text-nowrap">@Resources.Resources.Discount</div>
+                                <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.unitDiscount)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7 text-nowrap">@Resources.Resources.Deposit</div>
+                                <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.depositAmount)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7 text-nowrap">@Resources.Resources.TotalGST</div>
+                                <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.gstAmountCollected)</div>
+                            </div>
+                        }
+                    </section>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-flat btn-lg" data-dismiss="modal" data-mode="cancel"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</button>
-                <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Apply</button>
+            <div class="clearfix">&nbsp;</div>
+            <div class="row">
+                <div class="col">
+                    <div class="btn-group fluid btn-group-lg" role="group" aria-label="">
+                        <button type="submit" class="btn btn-primary fluid btn-lg" value="Pay" name="Pay">@Resources.Resources.CheckOut</button>
+                        <button type="button" class="btn btn-primary fluid btn-lg" id="btnSuspend">@Resources.Resources.Suspend</button>
+                        @*<button type="submit" class="btn btn-primary fluid btn-lg" value="Void" name="Void">Void</button>*@
+                    </div>
+                </div>
             </div>
             }
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="mdlToken" tabindex="-1" role="dialog" aria-labelledby="mdlToken" aria-hidden="true">
-    <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                @using (Html.BeginForm("Suspend", "Cart", FormMethod.Post, new { name = "frmSuspend", id = "frmSuspend", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
-                    @Html.HiddenFor(m => m.cart.userID)
-                    @Html.HiddenFor(m => m.cart.siteCode)
-                    @Html.HiddenFor(m => m.cart.customerCode)
-                    @Html.HiddenFor(m => m.cart.staffCode)
-                    <div id="alert-message"></div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.cart.cartToken)
-                            @Html.TextBoxFor(m => m.cart.cartToken, new { @class = "form-control form-control-lg" })
-                            @Html.ValidationMessageFor(m => m.cart.cartToken)
+            <div class="clearfix">&nbsp;</div>
+
+
+            @*<div class="modal fade" id="mdlQty" tabindex="-1" role="dialog" aria-labelledby="mdlQty" aria-hidden="true">
+                    <div class="modal-dialog" role="dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+
+                                <div class="modal-body">
+
+                                    <div class="col-md-8 justify-content-center align-items-center">
+                                        <div class="row">
+                                            <div class="col-6">Quantity : </div>
+                                            <div class="col-6"><input type="text" class="text-lg-left form-control-sm" id="txtqty" name="txtQty" /> </div>
+                                        </div>
+                                        <div class="row"><div class="col-6">.</div><div class="col-6"></div></div>
+                                        <div class="row">
+                                            <div class="col-6"><button type="button" class="btn btn-lg btn-block btn-block" id="btnAddQty">Save</button></div>
+                                            <div class="col-6"><button type="button" class="btn btn-lg btn-block btn-block" id="btnNoQty" data-dismiss="modal">Cancel</button> </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                         </div>
-                        <p class="text-muted">@Resources.Resources.TokenNumberText</p>
-                        @*<label>@Resources.Resources.TokenNumberText</label>
-                        <div class="form-group">
-                            <label for="txtsearchStaff">@Resources.Resources.TokenNumber</label>
-                            <input type="text" class="form-control live-search-box" id="txtsearchStaff">
-                        </div>*@
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary fluid btn-lg">@Resources.Resources.Proceed</button>
+                </div>*@
+
+            <div class="clearfix">&nbsp;</div>
+            <div class="modal fade" id="mdlCustomer" tabindex="-1" role="dialog" aria-labelledby="mdlCustomer" aria-hidden="true">
+                <div class="modal-dialog" role="dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            @*<div class="form-group">
+                                    <label for="txtsearchCustomer">@Resources.Resources.CustName</label>
+                                    <input type="text" class="form-control live-search-box" id="txtsearchCustomer">
+                                </div>
+                                <div>
+                                    <button id="btnSearchCust" class="btn btn-primary fluid btn-lg">@Resources.Resources.Search</button>
+                                </div>*@
+                            <ul class="list-group list-group-flush live-search-list" id="cust-srch-contain">
+                                @*    @foreach (var x in Model.lstCustomer)
+                                    {
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                @x.customerName
+                                                <small class="form-text text-muted">@x.customerCode</small>
+                                            </div>
+                                            <div class="col-3 justify-content-center align-items-center">
+                                                <button type="button" class="btn btn-lg btn-block btn-primary" data-name="@x.customerName" data-name-target="cart.customerName" data-value="@x.customerCode" data-value-target="cart.customerCode" id="btnCustomer">
+                                                    @Resources.Resources.Apply
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    }*@
+                            </ul>
+                        </div>
                     </div>
-                }
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="mdlHold" tabindex="-1" role="dialog" aria-labelledby="mdlHold" aria-hidden="true">
-    <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-            <div id="divContent"></div>                
-        </div>
-    </div>
-</div>
+<script type="text/javascript">
+     function addmystaff() { var message = '';
+            var per = 0;
+            var amt = 0;
+
+            if ($("select[name='cartDetails.staffcode'] option:selected").val().trim() == '')
+                message += '<p>Valid Staff is required</p>';
+            /*
+            if (parseFloat($("input[name='cartDetails.ratio']").val().trim()) <= 0 || isNaN(parseFloat($("input[name='cartDetails.ratio']").val().trim())))
+                message += '<p>Valid distribution ratio is required</p>';
+            */
+            if (message.trim() != '') {
+                $("#alert-message").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">"
+                    + message.trim() +
+                    "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+                    "<span aria-hidden=\"true\">&times;</span>" +
+                    "</button>" +
+                    "</div>");
+
+                return false;
+            }
+
+            var len = $('#tblStaffs tr > td:contains(' + $("select[name='cartDetails.staffcode'] option:selected").val() + ') + td:contains(' + $("select[name='cartDetails.staffcode'] option:selected").text() + ')').length;
+
+            if (len == 0) {
+                var ratio = parseFloat(100 / ($('#tblStaffs > tbody > tr').length + 1)).toFixed(2);
+
+                $('#tblStaffs tbody').append(
+                    "<tr class=\"row\">" +
+                    "<td class=\"col-3\">" + $("select[name='cartDetails.staffcode'] option:selected").val() + "</td>" +
+                    "<td class=\"col-5\">" + $("select[name='cartDetails.staffcode'] option:selected").text() + "</td>" +
+                    "<td class=\"col-2\">" + ratio + "</td>" +
+                    "<td class=\"col-2\"><button type=\"button\" class=\"btn btn-flat\" data-mode=\"delete\"><i class=\"fa fa-trash fa-2x\"></i></button></td>" +
+                    "</tr>");
+
+                $('#tblStaffs > tbody > tr').children(':nth-child(3)').text(ratio);
+
+                var itmArray = [];
+
+                $('#tblStaffs > tbody > tr').each(function () {
+                    if (parseFloat($(this).children(':nth-child(3)').text().trim()) > 0) {
+                        var data = {
+                            staffCode: $(this).children(':first-child').text().trim(),
+                            staffName: $(this).children(':nth-child(2)').text().trim(),
+                            ratio: parseFloat($(this).children(':nth-child(3)').text().trim())
+                        };
+
+                        itmArray.push(data);
+                    }
+                });
+
+                $("input[name='cartDetails.ratio']").val('0');
+                $("select[name='cartDetails.staffcode']").val('');
+
+                $("input[name='cartDetails.strStaffs']").val(JSON.stringify(itmArray));
+            }
+            }
+
+</script>
+            <div class="modal fade" id="mdlStaff" tabindex="-1" role="dialog" aria-labelledby="mdlStaff" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        @using (Html.BeginForm("Staff", "Cart", FormMethod.Post, new { name = "frmStaff", id = "frmStaff", role = "form" }))
+                        {
+                            <div class="modal-body">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                @Html.HiddenFor(m => m.cart.userID)
+                                @Html.HiddenFor(m => m.cart.siteCode)
+                                @Html.HiddenFor(m => m.cart.cartToken)
+                                @Html.HiddenFor(m => m.cart.customerCode)
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.cartDetails.staffcode)
+                                            @Html.DropDownListFor(m => m.cartDetails.staffcode, new SelectList(Model.lstStaff, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" , @onchange = "addmystaff()" })
+                                            @Html.ValidationMessageFor(m => m.cartDetails.staffcode)
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.cartDetails.ratio)
+                                                @Html.TextBoxFor(m => m.cartDetails.ratio, new { @class = "form-control form-control-lg text-right" })
+                                                @Html.ValidationMessageFor(m => m.cartDetails.ratio)
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                @*<div class="form-group">
+                                    <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddStaff">@Resources.Resources.Save</button>
+                                </div>*@
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="table-responsive small p-3">
+                                            <table class="table table-striped" id="tblStaffs">
+                                                <thead>
+                                                    <tr class="row">
+                                                        <th class="col-3" scope="col">@Resources.Resources.StaffCode</th>
+                                                        <th class="col-5" scope="col">@Resources.Resources.StaffName</th>
+                                                        <th class="col-2" scope="col">@Resources.Resources.Ratio</th>
+                                                        <th class="col-2" scope="col">@Resources.Resources.Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model.cartDetails.salesStaffDetails != null)
+                                                    {
+                                                        foreach (var item in Model.cartDetails.salesStaffDetails)
+                                                        {
+                                                            <tr class="row">
+                                                                <td class="col-3" scope="col">@item.staffCode</td>
+                                                                <td class="col-5">@item.staffName</td>
+                                                                <td class="col-2">@item.ratio</td>
+                                                                <td class="col-2">
+                                                                    <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        @Html.HiddenFor(m => m.cartDetails.strStaffs)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-flat btn-lg" data-dismiss="modal" data-mode="cancel"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</button>
+                                <button type="submit" class="btn btn-primary2"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Apply</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="mdlToken" tabindex="-1" role="dialog" aria-labelledby="mdlToken" aria-hidden="true">
+                <div class="modal-dialog" role="dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("Suspend", "Cart", FormMethod.Post, new { name = "frmSuspend", id = "frmSuspend", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                @Html.HiddenFor(m => m.cart.userID)
+                                @Html.HiddenFor(m => m.cart.siteCode)
+                                @Html.HiddenFor(m => m.cart.customerCode)
+                                @Html.HiddenFor(m => m.cart.staffCode)
+                                <div id="alert-message"></div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.cart.cartToken)
+                                        @Html.TextBoxFor(m => m.cart.cartToken, new { @class = "form-control form-control-lg" })
+                                        @Html.ValidationMessageFor(m => m.cart.cartToken)
+                                    </div>
+                                    <p class="text-muted">@Resources.Resources.TokenNumberText</p>
+                                    @*<label>@Resources.Resources.TokenNumberText</label>
+                                        <div class="form-group">
+                                            <label for="txtsearchStaff">@Resources.Resources.TokenNumber</label>
+                                            <input type="text" class="form-control live-search-box" id="txtsearchStaff">
+                                        </div>*@
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary fluid btn-lg">@Resources.Resources.Proceed</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="mdlHold" tabindex="-1" role="dialog" aria-labelledby="mdlHold" aria-hidden="true">
+                <div class="modal-dialog" role="dialog">
+                    <div class="modal-content">
+                        <div id="divContent"></div>
+                    </div>
+                </div>
+            </div>
+            @*<script type="text/javascript">
+                    [tooltip]:before {
+                    position : absolute;
+                     content : attr(tooltip);
+                     opacity : 0;
+                    }
+                    [tooltip]:hover:before {
+                    opacity : 1;
+                    }
+                    [tooltip]:not([tooltip-persistent]):before {
+                    pointer-events: none;
+                }
+                </script>*@
+            @*<div id='divHtml' />*@

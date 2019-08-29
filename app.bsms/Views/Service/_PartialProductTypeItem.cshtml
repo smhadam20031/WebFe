@@ -17,7 +17,7 @@
                 <td>@x.stockName</td>
                 <td>@x.itemPrice</td>
                 <td style="text-align:center">
-                    <button type="button" data-line-type="PRODUCT" data-line-status="SA" data-code="@x.stockCode" data-name="@x.stockName" data-price="@x.itemPrice" data-quantity="1" class="btn btn-lg btn-primary btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemPrice</button>
+                    <button type="button" data-line-type="PRODUCT" data-line-status="SA" data-code="@x.stockCode" data-name="@x.stockName" data-price="@x.itemPrice" data-quantity="1" class="btn btn-lg btn-primary2 btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemPrice</button>
                 </td>
             </tr>
         }

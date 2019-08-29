@@ -598,21 +598,116 @@ label {
 /*Jumbo Adding this btn-lg*/
 .btn-lg {
     font-weight: 400 !important;
-    font-size: smaller !important;
+    font-size: large !important;
 }
 /*Jumbo added the above*/
 
-.btn-primary {
-    color: #fef7db;
+.btn-primary1 {
+    /*color: #fef7db;*/
+    color: #FAF6F5;
+    /*background-color: #251659;
+    background-color: #CFC38F;
+    background-color: #251659;
+    background-color: #611B0A;
+    background-color: #832312;
+    background-color: #4A4017;*/
     background-color: #CFC38F;
     border-color: #CFC38F;
+    /*border-color: #CFC38F;*/
     border-radius: 20px !important;
     /* Jumbo Changing this
     font-weight: 400;
         */
     font-weight: 400;
     /*Jumbo adding this*/
-    font-size: smaller;
+    font-size: large;
+}
+
+    .btn-primary1:hover {
+        color: #fff;
+        background-color: #CFC38F;
+        border-color: #CFC38F;
+        border-radius: 20px !important;
+    }
+
+    .btn-primary1:focus, .btn-primary.focus {
+        color: #fff;
+        background-color: #8b7306;
+        border-color: #8b7306;
+        border-radius: 20px !important;
+        box-shadow: 0 0 0 0.2rem #e7cd56;
+    }
+
+    .btn-primary1.disabled, .btn-primary:disabled {
+        color: #8b7306;
+        background-color: #fef7db;
+        border-color: #fef7db;
+    }
+
+
+.btn-primary2 {
+    /*color: #fef7db;*/
+    color: #FAF6F5;
+    /* background-color: #CFC38F;
+    background-color: #4B180D;
+    background-color: #251659;
+    background-color: #611B0A;
+    background-color: #832312;
+    background-color: #4A4017;*/
+    background-color: #7A6202;
+    border-color: #4B180D;
+    /*border-color: #CFC38F;*/
+    border-radius: 20px !important;
+    /* Jumbo Changing this
+    font-weight: 400;
+        */
+    font-weight: 400;
+    /*Jumbo adding this*/
+    font-size: small;
+}
+
+    .btn-primary2:hover {
+        color: #fff;
+        background-color: #8b7306;
+        border-color: #8b7306;
+        border-radius: 20px !important;
+    }
+
+    .btn-primary2:focus, .btn-primary.focus {
+        color: #fff;
+        background-color: #8b7306;
+        border-color: #8b7306;
+        border-radius: 20px !important;
+        box-shadow: 0 0 0 0.2rem #e7cd56;
+    }
+
+    .btn-primary2.disabled, .btn-primary:disabled {
+        color: #8b7306;
+        background-color: #fef7db;
+        border-color: #fef7db;
+    }
+
+
+
+.btn-primary {
+    /*color: #fef7db;*/
+    color: #FAF6F5;
+    /* background-color: #CFC38F;
+    background-color: #4B180D;
+    background-color: #251659;
+    background-color: #611B0A;
+    background-color: #832312;
+    background-color: #4A4017;*/
+    background-color: #7A6202;
+    border-color: #4B180D;
+    /*border-color: #CFC38F;*/
+    border-radius: 20px !important;
+    /* Jumbo Changing this
+    font-weight: 400;
+        */
+    font-weight: 400;
+    /*Jumbo adding this*/
+    font-size: large;
 }
 
     .btn-primary:hover {

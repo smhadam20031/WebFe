@@ -1,9 +1,5 @@
 ﻿@model app.bsms.Models.Catelogue.Catelogue
 
-    @*<script>
-    alert(@Model.lstServiceTypeItems.Count)
-    </script>*@
-
 <ul class="list-unstyled">
     <li class="media">
         <div class="media-body">
@@ -23,11 +19,10 @@
         <div class="media-body">
             <div class="row">
                 <div class="col-8">@x.stockName</div>
-                
             @if (x.itemType == "SINGLE")
             {
                 <div class="col-2 text-center">
-                    <button type="button" data-line-type="SERVICE" data-line-status="SA" data-code="@x.itemSingleCode" data-name="@x.stockName" data-price="@x.itemSinglePrice" data-quantity="1" class="btn btn-lg btn-block btn-primary btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemSinglePrice</button>
+                    <button type="button" data-line-type="SERVICE" data-line-status="SA" data-code="@x.itemSingleCode" data-name="@x.stockName" data-price="@x.itemSinglePrice" data-quantity="1" class="btn  btn-block btn-primary2 btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemSinglePrice</button>
                 </div>
                 <div class="col-2 text-center">&nbsp;</div>
             }
@@ -35,22 +30,22 @@
             {
                 <div class="col-2 text-center">&nbsp;</div>
                 <div class="col-2 text-center">
-                    <button type="button" data-line-type="COURSE" data-line-status="SA" data-code="@x.itemCourseCode" data-name="@x.stockName" data-price="@x.itemCoursePrice" data-quantity="1" class="btn btn-lg btn-block btn-primary btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemCoursePrice</button>
+                    <button type="button" data-line-type="COURSE" data-line-status="SA" data-code="@x.itemCourseCode" data-name="@x.stockName" data-price="@x.itemCoursePrice" data-quantity="1" class="btn  btn-block btn-primary2 btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemCoursePrice</button>
                 </div>
             }
             else if (x.itemType == "BOTH")
             {
                 <div class="col-2 text-center">
-                    <button type="button" data-line-type="SERVICE" data-line-status="SA" data-code="@x.itemSingleCode" data-name="@x.stockName" data-price="@x.itemSinglePrice" data-quantity="1" class="btn btn-lg btn-block btn-primary btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemSinglePrice</button>
+                    <button type="button" data-line-type="SERVICE" data-line-status="SA" data-code="@x.itemSingleCode" data-name="@x.stockName" data-price="@x.itemSinglePrice" data-quantity="1" class="btn  btn-block btn-primary2 btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemSinglePrice</button>
                 </div>
                 <div class="col-2 text-center">
-                    <button type="button" data-line-type="COURSE" data-line-status="SA" data-code="@x.itemCourseCode" data-name="@x.stockName" data-price="@x.itemCoursePrice" data-quantity="1" class="btn btn-lg btn-block btn-primary btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemCoursePrice</button>
+                    <button type="button" data-line-type="COURSE" data-line-status="SA" data-code="@x.itemCourseCode" data-name="@x.stockName" data-price="@x.itemCoursePrice" data-quantity="1" class="btn  btn-block btn-primary2 btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemCoursePrice</button>
                 </div>
             }
             else
             {
                 <div class="col-2 text-center">
-                    <button type="button" data-line-type="@x.itemType" data-line-status="SA" data-code="@x.itemSingleCode" data-name="@x.stockName" data-price="@x.itemSinglePrice" data-quantity="1" class="btn btn-lg btn-block btn-primary btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemSinglePrice</button>
+                    <button type="button" data-line-type="@x.itemType" data-line-status="SA" data-code="@x.itemSingleCode" data-name="@x.stockName" data-price="@x.itemSinglePrice" data-quantity="1" class="btn  btn-block btn-primary2 btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemSinglePrice</button>
                 </div>
                 <div class="col-2 text-center">&nbsp;</div>
             }
