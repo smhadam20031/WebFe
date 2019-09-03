@@ -1,7 +1,7 @@
 ﻿@model app.bsms.Models.Sales.Cart
 @{
     ViewBag.Title = "";
-    //Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    Layout = "~/Views/Shared/_LayoutMain1.cshtml";
 }
 @*<nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -183,7 +183,7 @@
                 @*<h2>@Resources.Resources.Discount</h2>*@
                 @*@Html.LabelFor(m => m.cartDetails.discountDetails)*@
 
-                <div class="col-2">
+                <div class="col-3">
                     <section>
                         <div class="form-group">
                             @Html.LabelFor(m => m.cartDetails.discountUser)
@@ -236,7 +236,7 @@
                         <table class="table table-striped" id="tblDiscounts">
                             <thead>
                                 <tr class="row">
-                                    @*<th class="col-1" scope="col">#</th>*@
+                                    <th class="col-1" scope="col">SNo</th>
                                     <th class="col-2" scope="col">Discount %</th>
                                     <th class="col-3" scope="col">Discount Price</th>
                                     <th class="col-4" scope="col">Discount Reason</th>
@@ -249,7 +249,7 @@
                                     foreach (var item in Model.cartDetails.discountDetails)
                                     {
                                         <tr class="row">
-                                            @*<td class="col-1" scope="col">@item.discountLineNumber</td>*@
+                                            <td class="col-1" scope="col">@item.discountLineNumber</td>
                                             <td class="col-2">@item.discountPercentage</td>
                                             <td class="col-3">@item.discountAmount</td>
                                             <td class="col-4">@item.discountReason</td>
@@ -727,30 +727,30 @@
     <div class="row">
             <div class="col-4">
               <section>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cartDetails.staffcode)
-                                @Html.DropDownListFor(m => m.cartDetails.staffcode, new SelectList(Model.lstDiscountUser, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
-                                @Html.ValidationMessageFor(m => m.cartDetails.staffcode)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cartDetails.ratio)
-                                @Html.TextBoxFor(m => m.cartDetails.ratio, new { @class = "form-control form-control-lg text-right" })
-                                @Html.ValidationMessageFor(m => m.cartDetails.ratio)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddStaff">@Resources.Resources.Save</button>
-                    </div>
+                  <div class="row">
+                      <div class="col">
+                          <div class="form-group">
+                              @Html.LabelFor(m => m.cartDetails.staffcode)
+                              @Html.DropDownListFor(m => m.cartDetails.staffcode, new SelectList(Model.lstDiscountUser, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
+                              @Html.ValidationMessageFor(m => m.cartDetails.staffcode)
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class="form-group">
+                              @Html.LabelFor(m => m.cartDetails.ratio)
+                              @Html.TextBoxFor(m => m.cartDetails.ratio, new { @class = "form-control form-control-lg text-right" })
+                              @Html.ValidationMessageFor(m => m.cartDetails.ratio)
+                          </div>
+                      </div>
+                      
+                  </div>
+                  <div class="form-group">
+                      <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddStaff">@Resources.Resources.Save</button>
+                  </div>
+                   
                 </section>
             </div>
-           <div class="col-8">
+           <div class="col-7">
                 <div class="table-responsive small p-5">
                     <table class="table table-striped" id="tblStaffs">
                         <thead>
@@ -768,7 +768,7 @@
                                 {
                                     <tr class="row">
                                         <td class="col-3" scope="col">@item.staffCode</td>
-                                        <td class="col-5">@item.staffName</td>
+                                        <td class="col-4">@item.staffName</td>
                                         <td class="col-2">@item.ratio</td>
                                         <td class="col-2">
                                             <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>

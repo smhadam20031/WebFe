@@ -58,7 +58,6 @@
     @Html.HiddenFor(m => m.cart.cartToken)
     <div class="row">
         <div class="col">
-
             @Html.LabelFor(m => m.cart.customerName)
             <div class="input-group">
                 @*@Html.TextBoxFor(m => m.cart.customerName,  new { @class = "form-control form-control-lg no-right-radius" })*@
@@ -102,281 +101,316 @@
             {
             foreach (var x in Model.cart.transactionDetails)
             {
-            <div class="card">
-                <div class="card-body">
-                    <div class="media">
-                        <div class="custom-control custom-checkbox align-self-start mr-3">
-                            @Html.CheckBox("check-item", new { @class = "custom-control-input", id = ("check-item_" + x.itemCode) })
-                            <label for="check-item_@x.itemCode" class="custom-control-label">&nbsp;</label>
-                        </div>
-                        <div class="media-body">
-                            <div class="card-title">
-                                <strong>@x.itemName</strong>
-                                @if (Model.cart.transactionDetails.Count() > 1)
-                                {
-                                    <div class="pull-right">
-
-                                        @*Yoonus Adding staff picture*@
-                                        @if (x.salesStaffDetails != null)
-                                        {
-                                            foreach (var itm in x.salesStaffDetails)
-                                            {
-                                                var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itm.staffCode + ".jpg";
-                                                <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
-                                            }
-                                        }
-
-                                        @if (x.lineType == "COURSE")
-                                        {
-                                            if (x.courseDetails != null)
-                                            {
-                                                <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/course.png" style="width:50px;" /></a>
-                                            }
-                                        }
-                                        @if (x.lineType == "PACKAGE")
-                                        {
-                                            if (x.courseDetails != null)
-                                            {
-                                                <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:50px;" /></a>
-                                            }
-                                        }
-                                        @if (x.isHoldItem)
-                                        {
-                                            <img src="~/images/holdproduct.png" style="width:50px;" />
-                                        }
-                                        @if (x.lineType == "TD")
-                                        {
-                                            if (x.courseDetails != null)
-                                            {
-                                                <img src="~/images/td.png" style="width:50px;" />
-                                            }
-                                        }
-                                        @if (x.courseDetails != null)
-                                        {
-                                            foreach (var item in x.courseDetails)
-                                            {
-                                                if (item.treatmentStaffDetails != null)
-                                                {
-                                                    foreach (var itemtreat in item.treatmentStaffDetails)
-                                                    {
-                                                        var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itemtreat.staffCode + ".jpg";
-                                                        <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        @if (x.lineType == "PRODUCT")
-                                        {
-                                            <a role="button" class="btn btn-primary2 btn-lg" data-toggle="modal" data-target="#mdlHold" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">@Resources.Resources.Hold</a>
-                                        }
-
-                                        @*onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=no,resizable=no,width=850,height=550,top=10, left=300,position=absolute');"*@
-                                        <button type="button" class="btn btn-primary2" onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</button>
-
-                                        @*<a role="button" class="btn btn-primary btn-lg" href="/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)">@Resources.Resources.Edit</a>*@
-                                        <button type="button" class="btn btn-primary2" data-url="/Cart/DeleteItem" data-mode="deleteCart" data-value="@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)" data-code="@x.itemCode"><i class="fa fa-trash fa-2x"></i></button>
-                                    </div>
-                                }
-                                else
-                                {
-                            <div class="pull-right">
-
-                                @*Yoonus Adding staff picture*@
-                                @if (x.salesStaffDetails != null)
-                                {
-                                    foreach (var itm in x.salesStaffDetails)
-                                    {
-                                        var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itm.staffCode + ".jpg";
-                                        <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
-                                    }
-                                }
-
-                                @if (x.lineType == "COURSE")
-                                {
-                                    if (x.courseDetails != null)
-                                    {
-                                        <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/course.png" style="width:50px;" /></a>
-                                    }
-                                }
-                                @if (x.lineType == "PACKAGE")
-                                {
-                                    if (x.courseDetails != null)
-                                    {
-                                        <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:50px;" /></a>
-                                    }
-                                }
-                                @if (x.isHoldItem)
-                                {
-                                    <img src="~/images/holdproduct.png" style="width:50px;" />
-                                }
-                                @if (x.lineType == "TD")
-                                {
-                                    if (x.courseDetails != null)
-                                    {
-                                        <img src="~/images/td.png" style="width:50px;" />
-                                    }
-                                }
-                                @if (x.courseDetails != null)
-                                {
-                                    foreach (var item in x.courseDetails)
-                                    {
-                                        if (item.treatmentStaffDetails != null)
-                                        {
-                                            foreach (var itemtreat in item.treatmentStaffDetails)
-                                            {
-                                                var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itemtreat.staffCode + ".jpg";
-                                                <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
-                                            }
-                                        }
-                                    }
-                                }
-                                @if (x.lineType == "PRODUCT")
-                                {
-                                    @*class= "btn btn-primary btn-lg"*@
-                                    <a role="button" class="btn btn-primary2" data-toggle="modal" data-target="#mdlHold" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">@Resources.Resources.Hold</a>
-                                }
-                                <button type="button" class="btn btn-primary2" onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</button>
-                                        @*<a role="button" class="btn btn-primary1 " onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</a>*@
-                                <button type="button" class="btn btn-primary2" data-url="/Cart/DeleteItem" data-mode="deleteCart" data-value="@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)" data-code="@x.itemCode"><i class="fa fa-trash fa-2x"></i></button>
-                                @*onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');"*@
-
-                                @*<a role="button" class="btn btn-primary btn-lg" href="/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)">@Resources.Resources.Edit</a>*@
-                            </div>
-                                }
-                            </div>
-                            <h6 class="card-subtitle mb-2 text-muted">@x.itemCode</h6>
-                        </div>
-                    </div>
-                    @if (x.lineType == "COURSE")
+<div class="card">
+    <div class="card-body">
+        <div class="media">
+            <div class="custom-control custom-checkbox align-self-start mr-3">
+                @Html.CheckBox("check-item", new { @class = "custom-control-input", id = ("check-item_" + x.itemCode) })
+                <label for="check-item_@x.itemCode" class="custom-control-label">&nbsp;</label>
+            </div>
+            <div class="media-body">
+                <div class="card-title">
+                    <strong>@x.itemName</strong>
+                    @if (Model.cart.transactionDetails.Count() > 1)
                     {
-                        if (x.courseDetails != null && x.itemCode != null)
-                        {
-                            @*<a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode">View Course Schedule</a>*@
-                            @*<a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:100px;"/></a>*@
+                        <div class="pull-right">
 
-                            <div class="modal fade" id="mdl_@x.itemCode" tabindex="-1" role="dialog" aria-labelledby="mdlCustomer" aria-hidden="true">
-                                <div class="modal-dialog" style="max-width:75%">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title"></h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="table-responsive small">
-                                                <table class="table" style="border-spacing: 0 1em;">
-                                                    <thead>
-                                                        <tr class="row">
-                                                            <th class="col-1" scope="col"></th>
-                                                            <th class="col-2" scope="col">@Resources.Resources.TreatmentNumber</th>
-                                                            <th class="col-1" scope="col">@Resources.Resources.Type</th>
-                                                            <th class="col-2" scope="col">@Resources.Resources.UnitPrice</th>
-                                                            <th class="col-2" scope="col">@Resources.Resources.TreatmentDate</th>
-                                                            @*<th class="col-2" scope="col">Next Appt.</th>*@
-                                                            <th class="col-1" scope="col">@Resources.Resources.FOC</th>
-                                                            <th class="col-2" scope="col">@Resources.Resources.Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach (var item in x.courseDetails)
-                                                        {
-                                                            <tr class="row">
-                                                                <td class="col-1" scope="col"></td>
-                                                                <td class="col-2" scope="col">@item.treatmentNumber</td>
-                                                                <td class="col-1">@item.courseType</td>
-                                                                <td class="col-2">@(string.Format("{0:#.0#}", item.treatmentUnitPrice))</td>
-                                                                <td class="col-2">@item.treatmentDate.ToString("dd MMM yyyy")</td>
-                                                                @*<td class="col-2">@(((DateTime)item.nextAppt).ToString("dd MMM yyyy"))</td>*@
-                                                                <td class="col-1">@(item.isFOC == true ? "FOC" : "")</td>
-                                                                <td class="col-2">@item.treatmentStatus</td>
-                                                            </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                            @*Yoonus Adding staff picture*@
+                            @if (x.salesStaffDetails != null)
+                            {
+                                foreach (var itm in x.salesStaffDetails)
+                                {
+                                    var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itm.staffCode + ".jpg";
+                                    <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
+                                }
+                            }
+
+                            @if (x.lineType == "COURSE")
+                            {
+                                if (x.courseDetails != null)
+                                {
+                                    <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/course.png" style="width:50px;" /></a>
+                                }
+                            }
+                            @if (x.lineType == "PACKAGE")
+                            {
+                                if (x.courseDetails != null)
+                                {
+                                    <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:50px;" /></a>
+                                }
+                            }
+                            @if (x.isHoldItem)
+                            {
+                                <img src="~/images/holdproduct.png" style="width:50px;" />
+                            }
+                            @if (x.lineType == "TD")
+                            {
+                                if (x.courseDetails != null)
+                                {
+                                    <img src="~/images/td.png" style="width:50px;" />
+                                }
+                            }
+                            @if (x.courseDetails != null)
+                            {
+                                foreach (var item in x.courseDetails)
+                                {
+                                    if (item.treatmentStaffDetails != null)
+                                    {
+                                        foreach (var itemtreat in item.treatmentStaffDetails)
+                                        {
+                                            var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itemtreat.staffCode + ".jpg";
+                                            <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
+                                        }
+                                    }
+                                }
+                            }
+                            @if (x.lineType == "PRODUCT")
+                            {
+                                <a role="button" class="btn btn-primary2 btn-lg" data-toggle="modal" data-target="#mdlHold" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">@Resources.Resources.Hold</a>
+                            }
+
+                            @*onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=no,resizable=no,width=850,height=550,top=10, left=300,position=absolute');"*@
+                            <button type="button" class="btn btn-primary2" onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</button>
+
+                            @*<a role="button" class="btn btn-primary btn-lg" href="/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)">@Resources.Resources.Edit</a>*@
+                            <button type="button" class="btn btn-primary2" data-url="/Cart/DeleteItem" data-mode="deleteCart" data-value="@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)" data-code="@x.itemCode"><i class="fa fa-trash fa-2x"></i></button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="pull-right">
+
+                            @*Yoonus Adding staff picture*@
+                            @if (x.salesStaffDetails != null)
+                            {
+                                foreach (var itm in x.salesStaffDetails)
+                                {
+                                    var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itm.staffCode + ".jpg";
+                                    <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
+                                }
+                            }
+
+                            @if (x.lineType == "COURSE")
+                            {
+                                if (x.courseDetails != null)
+                                {
+                                    <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/course.png" style="width:50px;" /></a>
+                                }
+                            }
+                            @if (x.lineType == "PACKAGE")
+                            {
+                                if (x.courseDetails != null)
+                                {
+                                    <a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:50px;" /></a>
+                                }
+                            }
+                            @if (x.isHoldItem)
+                            {
+                                <img src="~/images/holdproduct.png" style="width:50px;" />
+                            }
+                            @if (x.lineType == "TD")
+                            {
+                                if (x.courseDetails != null)
+                                {
+                                    <img src="~/images/td.png" style="width:50px;" />
+                                }
+                            }
+                            @if (x.courseDetails != null)
+                            {
+                                foreach (var item in x.courseDetails)
+                                {
+                                    if (item.treatmentStaffDetails != null)
+                                    {
+                                        foreach (var itemtreat in item.treatmentStaffDetails)
+                                        {
+                                            var staffImage = System.Web.Configuration.WebConfigurationManager.AppSettings["DocsUrl"] + "EMP_HS04_" + itemtreat.staffCode + ".jpg";
+                                            <img class="card-img-top staffimage" src="@staffImage" onerror="this.src = '/images/no-image.png'" />
+                                        }
+                                    }
+                                }
+                            }
+                            @if (x.lineType == "PRODUCT")
+                            {
+                                @*class= "btn btn-primary btn-lg"*@
+                                <a role="button" class="btn btn-primary2" data-toggle="modal" data-target="#mdlHold" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">@Resources.Resources.Hold</a>
+                            }
+                            <button type="button" class="btn btn-primary2" onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</button>
+                            @*<a role="button" class="btn btn-primary1 " onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');">@Resources.Resources.Details</a>*@
+                            <button type="button" class="btn btn-primary2" data-url="/Cart/DeleteItem" data-mode="deleteCart" data-value="@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)" data-code="@x.itemCode"><i class="fa fa-trash fa-2x"></i></button>
+                            @*onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');"*@
+
+                            @*<a role="button" class="btn btn-primary btn-lg" href="/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)">@Resources.Resources.Edit</a>*@
+                        </div>
+                    }
+                </div>
+                <h6 class="card-subtitle mb-2 text-muted">@x.itemCode</h6>
+            </div>
+        </div>
+        @if (x.lineType == "COURSE")
+        {
+            if (x.courseDetails != null && x.itemCode != null)
+            {
+                @*<a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode">View Course Schedule</a>*@
+                @*<a role="button" class="btn btn-flat btn-lg" data-toggle="modal" data-target="#mdl_@x.itemCode"><img src="~/images/package.png" style="width:100px;"/></a>*@
+
+                <div class="modal fade" id="mdl_@x.itemCode" tabindex="-1" role="dialog" aria-labelledby="mdlCustomer" aria-hidden="true">
+                    <div class="modal-dialog" style="max-width:75%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive small">
+                                    <table class="table" style="border-spacing: 0 1em;">
+                                        <thead>
+                                            <tr class="row">
+                                                <th class="col-1" scope="col"></th>
+                                                <th class="col-2" scope="col">@Resources.Resources.TreatmentNumber</th>
+                                                <th class="col-1" scope="col">@Resources.Resources.Type</th>
+                                                <th class="col-2" scope="col">@Resources.Resources.UnitPrice</th>
+                                                <th class="col-2" scope="col">@Resources.Resources.TreatmentDate</th>
+                                                @*<th class="col-2" scope="col">Next Appt.</th>*@
+                                                <th class="col-1" scope="col">@Resources.Resources.FOC</th>
+                                                <th class="col-2" scope="col">@Resources.Resources.Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in x.courseDetails)
+                                            {
+                                                <tr class="row">
+                                                    <td class="col-1" scope="col"></td>
+                                                    <td class="col-2" scope="col">@item.treatmentNumber</td>
+                                                    <td class="col-1">@item.courseType</td>
+                                                    <td class="col-2">@(string.Format("{0:#.0#}", item.treatmentUnitPrice))</td>
+                                                    <td class="col-2">@item.treatmentDate.ToString("dd MMM yyyy")</td>
+                                                    @*<td class="col-2">@(((DateTime)item.nextAppt).ToString("dd MMM yyyy"))</td>*@
+                                                    <td class="col-1">@(item.isFOC == true ? "FOC" : "")</td>
+                                                    <td class="col-2">@item.treatmentStatus</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        }
-                    }
-                    <div class="clearfix">&nbsp;</div>
-                    <div class="row">
-                        <div class="col text-center"><b>@Resources.Resources.Quantity</b></div>
-                        <div class="col text-center"><b>@Resources.Resources.UnitPrice</b></div>
-                        <div class="col text-center"><b>@Resources.Resources.Deposit</b></div>
-                        <div class="col text-center"><b>@Resources.Resources.Discount</b></div>
-                        <div class="col text-center"><b>@Resources.Resources.TotalAmount</b></div>
-                        <div class="col text-center"><b>@Resources.Resources.FOC</b></div>
-                        <div class="col text-center"><b>@Resources.Resources.StaffName</b></div>
-                        @*<div class="col text-center"><b>@Resources.Resources.StaffName</b></div>*@
+                        </div>
                     </div>
-                    @*<script type="text/javascript">
-                            function popitup() {
-                                        newwindow = window.open("/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)", "_blank", "directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=no,resizable=yes,width=500,height=300,top=10, left=10,position=absolute");
-                                    }
-                        </script>*@
-                    <div class="row">
-                        @*<div class="col text-center" onclick="qtyclick('@x.itemCode')" title="Click to edit Quantity">@x.itemQty</div>*@
+                </div>
+            }
+        }
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+            <div class="col text-center"><b>@Resources.Resources.Quantity</b></div>
+            <div class="col text-center"><b>@Resources.Resources.UnitPrice</b></div>
+            <div class="col text-center"><b>@Resources.Resources.Deposit</b></div>
+            <div class="col text-center"><b>@Resources.Resources.Discount</b></div>
+            <div class="col text-center"><b>@Resources.Resources.TotalAmount</b></div>
+            <div class="col text-center"><b>@Resources.Resources.FOC</b></div>
+            <div class="col text-center"><b>@Resources.Resources.StaffName</b></div>
+            <div class="col text-center"><b>@Resources.Resources.Status</b></div>
+        </div>
+        @*<script type="text/javascript">
+            function popitup() {
+                        newwindow = window.open("/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)", "_blank", "directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=no,resizable=yes,width=500,height=300,top=10, left=10,position=absolute");
+                    }
+        </script>*@
+        <script type="text/javascript">
+    function toggleContent(content) {  
+        var contentid = document.getElementById(content);      
+        contentid.style.display == "block" ? contentid.style.display = "none" : contentid.style.display = "block";
+        document.getElementById(content).focus();
+    }
 
-                        <div class="col text-center" onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=yes,width=850,height=550,top=10,left=300,position=absolute');" title="Click to edit Quantity">@x.itemQty</div>
-                        <div class="col text-center">@x.unitPrice</div>
-                        <div class="col text-center">@x.depositAmount</div>
-                        <div class="col text-center">@x.unitDiscount</div>
-                        <div class="col text-center">
-                            @if (x.unitDiscount != 0)
+    function Enterfunc(content) {
+        if (event.keyCode == 13) 
+        {
+            var contentid = document.getElementById(content);
+            @*alert(document.getElementById(content).value);
+            alert(@x.itemQty);
+            @x.itemQty=document.getElementById(content).value;*@
+            contentid.style.display == "block" ? contentid.style.display = "none" : contentid.style.display = "block";
+        }
+    }
+        </script>
+        <div class="row">
+            @*<div class="col text-center" onclick="qtyclick('@x.itemCode')" title="Click to edit Quantity">@x.itemQty</div>*@
+
+            <div class="col text-center" onclick="toggleContent('txtQty_@x.itemCode')" title="Click to edit Quantity">@x.itemQty</div>
+            @*onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=yes,width=850,height=550,top=10,left=300,position=absolute');"*@
+            <div class="col text-center" onclick="toggleContent('txtUnitPrice_@x.itemCode')" title="Click to edit Unit Price">@x.unitPrice</div>
+            <div class="col text-center" onclick="toggleContent('txtdepositAmount_@x.itemCode')" title="Click to edit Deposit">@x.depositAmount</div>
+            <div class="col text-center" onclick="toggleContent('txtunitDiscount_@x.itemCode')" title="Click to edit Unit Discount">@x.unitDiscount</div>
+            <div class="col text-center">
+                @if (x.unitDiscount != 0)
+                {
+                    if (x.lineType == "COURSE")
+                    {
+                        if (x.courseDetails != null)
+                        {
+                            if (x.courseDetails.Count > 0)
                             {
-                                if (x.lineType == "COURSE")
+                                if (x.courseDetails.FirstOrDefault().courseType == "N")
                                 {
-                                    if (x.courseDetails != null)
-                                    {
-                                        if (x.courseDetails.Count > 0)
-                                        {
-                                            if (x.courseDetails.FirstOrDefault().courseType == "N")
-                                            {
-                                                <del class="form-text text-muted">@(x.courseDetails.Count * x.unitPrice)</del>
-                                            }
-                                            else
-                                            {
-                                                <del class="form-text text-muted">@(x.itemQty * x.unitPrice)</del>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <del class="form-text text-muted">@(x.itemQty * x.unitPrice)</del>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <del class="form-text text-muted">@(x.itemQty * x.unitPrice)</del>
-                                    }
-
+                                    <del class="form-text text-muted">@(x.courseDetails.Count * x.unitPrice)</del>
                                 }
                                 else
                                 {
                                     <del class="form-text text-muted">@(x.itemQty * x.unitPrice)</del>
                                 }
-                                <span>@x.itemAmount</span>
                             }
                             else
                             {
-                                <span>@x.itemAmount</span>
+                                <del class="form-text text-muted">@(x.itemQty * x.unitPrice)</del>
                             }
-                        </div>
-                        <div class="col text-center" title="Click to FOC">@(x.isFOC == false ? string.Empty : Resources.Resources.FOC)</div>
-                        <div class="col text-center">
-                            @if (x.salesStaffDetails != null)
-                            {
-                                foreach (var itm in x.salesStaffDetails)
-                                {
-                                    <p onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');" title="Click to edit Quantity">@itm.staffName</p>
-                                }
-                            }
-                        </div>
-                    </div>
-                </div>
+                        }
+                        else
+                        {
+                            <del class="form-text text-muted">@(x.itemQty * x.unitPrice)</del>
+                        }
+
+                    }
+                    else
+                    {
+                        <del class="form-text text-muted">@(x.itemQty * x.unitPrice)</del>
+                    }
+                    <span>@x.itemAmount</span>
+                }
+                else
+                {
+                    <span>@x.itemAmount</span>
+                }
             </div>
+            <div class="col text-center">@(x.isFOC == false ? string.Empty : Resources.Resources.FOC)</div>
+            @*<div class="col text-center">@(x.isFOC == false ? string.Empty : Html.CheckBox("check-item", new { @class = "custom-control-input"}) )</div>*@
+
+            @*@item.treatmentStatus*@
+            <div class="col text-center">
+                @if (x.salesStaffDetails != null)
+                {
+                    foreach (var itm in x.salesStaffDetails)
+                    {
+                        <p onclick="window.open('/Cart/Item/@x.itemCode/@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)', '_blank', 'directories=0,titlebar=0,toolbar=0,location=0,status=0, menubar=0,scrollbars=yes,resizable=no,width=850,height=550,top=10,left=300,position=absolute');" title="Click to edit Quantity">@itm.staffName</p>
+                    }
+                }
+            </div>
+            <div class="col text-center" onclick="toggleContent('txtitemStatus_@x.itemCode')" title="Click to edit item Status">@x.itemStatus</div>
+        </div>
+
+        <div class="row">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <div class="col text-center"><input type="text" value="@x.itemQty" id="txtQty_@x.itemCode" size="2" style="display:none" onkeypress="Enterfunc('txtQty_@x.itemCode')" /></div>
+            &nbsp;&nbsp;<div class="col text-center"><input type="text" value="@x.unitPrice" id="txtUnitPrice_@x.itemCode" name="txtUnitPrice_@x.itemCode" size="2" style="display: none" onkeypress="Enterfunc('txtUnitPrice_@x.itemCode')" /></div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="col text-center"><input type="text" value="@x.depositAmount" id="txtdepositAmount_@x.itemCode" name="txtdepositAmount_@x.itemCode" size="2" style="display: none" onkeypress="Enterfunc('txtdepositAmount_@x.itemCode')" /></div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="col text-center"><input type="text" value="@x.unitDiscount" id="txtunitDiscount_@x.itemCode" name="txtunitDiscount_@x.itemCode" size="2" style="display: none" onkeypress="Enterfunc('txtunitDiscount_@x.itemCode')" /></div>
+            <div class="col text-center"><input type="text" value="@x.itemAmount" id="txtitemAmount_@x.itemCode" name="txtitemAmount_@x.itemCode" size="2" style="display: none" /></div>
+            <div class="col text-center"><input type="text" value="" id="txtisFOC_@x.itemCode" name="txtisFOC_@x.itemCode" size="2" style="display: none" /></div>
+            <div class="col text-center"><input type="text" value="" id="txtStaff_@x.itemCode" name="txtitemsStatus_@x.itemCode" size="2" style="display: none" /></div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="col text-center"><input type="text" value="" id="txtitemStatus_@x.itemCode" name="txt_@x.itemCode" size="2" style="display: none" onkeypress="Enterfunc('txtitemStatus_@x.itemCode')" /></div>
+        </div>
+    </div>
+    
+</div>
             <div class="clearfix">&nbsp;</div>
             }
             }

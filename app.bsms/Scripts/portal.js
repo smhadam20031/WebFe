@@ -898,10 +898,11 @@ $(function () {
           
             if ($("select[name='cartDetails.staffcode'] option:selected").val().trim() == '')
                 message += '<p>Valid Staff is required</p>';
-            /*
-            if (parseFloat($("input[name='cartDetails.ratio']").val().trim()) <= 0 || isNaN(parseFloat($("input[name='cartDetails.ratio']").val().trim())))
-                message += '<p>Valid distribution ratio is required</p>';
-            */
+
+            
+            //if (parseFloat($("input[name='cartDetails.ratio']").val().trim()) <= 0 || isNaN(parseFloat($("input[name='cartDetails.ratio']").val().trim())))
+            //    message += '<p>Valid distribution ratio is required</p>';
+            
             if (message.trim() != '') {
                 $("#alert-message").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">"
                     + message.trim() +
@@ -1254,13 +1255,27 @@ function changeColor() {
         //    showCustomerModal($("#txtsearchCust").val());
         //}
 
+        //$(document).on("keyup", ".live-search-box", function () {
+        //    var searchTerm = $(this).val().toLowerCase();
+        //    $(".live-search-list li").each(function () {
+        //        if ($(this).filter("[data-search-term *= " + searchTerm + "]").length > 0 || searchTerm.length < 1) {
+        //            $(this).show();
+        //        } else {
+        //            $(this).hide();
+        //        }
+        //    });
+
+
         $(document).on("keyup", "#txtsearchCust", function () {
             //$(".live-search-box").val('');
-            $("#mdlCustomer1").show();
-            //$("#mdlCustomer1").modal({ backdrop: 'static', keyboard: false, show: true });
-            //alert($("#txtsearchCust").val());
-            //alert($("#Whatyouwant").val());
-            showCustomerModal1($("#txtsearchCust").val());
+            
+            if (document.getElementById('txtsearchCust').value.trim() == "") {
+                $("#mdlCustomer1").hide();
+            }
+            else {
+                $("#mdlCustomer1").show();
+                showCustomerModal1($("#txtsearchCust").val());
+            }
         });
 
 

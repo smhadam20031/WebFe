@@ -577,7 +577,7 @@ namespace app.bsms.Controllers.Sales
             app.bsms.api.Service.Parameters.Add("itemName", text);
             List<ServiceTypeItem> list = (
                 from f in app.bsms.api.Service.GetList<ServiceTypeItem>("searchItem")
-                orderby f.stockName
+                orderby f.itemName
                 select f).ToList<ServiceTypeItem>();
             catelogue.lstServiceTypeItems = (
                 from f in list
@@ -600,11 +600,11 @@ namespace app.bsms.Controllers.Sales
                 select f).ToList<ServiceTypeItem>();
             foreach (ServiceTypeItem serviceTypeItem in list)
             {
-                if (!catelogue.lstServiceTypeItems.Exists((ServiceTypeItem f) => f.itemName == serviceTypeItem.stockName))
+                if (!catelogue.lstServiceTypeItems.Exists((ServiceTypeItem f) => f.itemName == serviceTypeItem.itemName))
                 {
                     catelogue.lstServiceTypeItems.Add(new ServiceTypeItem()
                     {
-                        stockName = serviceTypeItem.stockName,
+                        stockName = serviceTypeItem.itemName,
                         itemCourseCode = serviceTypeItem.stockCode,
                         itemCoursePrice = serviceTypeItem.itemPrice,
                         itemType = "COURSE",
@@ -613,7 +613,7 @@ namespace app.bsms.Controllers.Sales
                 }
                 else
                 {
-                    ServiceTypeItem serviceTypeItem1 = catelogue.lstServiceTypeItems.SingleOrDefault<ServiceTypeItem>((ServiceTypeItem f) => f.stockName == serviceTypeItem.stockName);
+                    ServiceTypeItem serviceTypeItem1 = catelogue.lstServiceTypeItems.SingleOrDefault<ServiceTypeItem>((ServiceTypeItem f) => f.itemName == serviceTypeItem.itemName);
                     
                     serviceTypeItem1.itemSingleCode = serviceTypeItem1.stockCode;
                     serviceTypeItem1.itemSinglePrice = serviceTypeItem1.itemPrice;

@@ -840,6 +840,8 @@
     <Content Include="Views\Accounts\Topup.cshtml" />
     <Content Include="Views\BillOps\VoidInvoice.cshtml" />
     <Content Include="Views\Cart\ItemQty.cshtml" />
+    <Content Include="Views\Cart\_SelectCustomerModal1.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

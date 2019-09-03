@@ -111,8 +111,9 @@ namespace app.bsms.Models.Sales.Post
     [Display(Name = "FOCReason", ResourceType = typeof (Resources.Resources))]
     [RequiredIf("isFOC == true", ErrorMessageResourceName = "FOCReasonRequired", ErrorMessageResourceType = typeof (Resources.Resources))]
     public string FOCReason { get; set; }
+        public string itemStatus { get; set; }
 
-    [Display(Name = "FOCQuantity", ResourceType = typeof (Resources.Resources))]
+        [Display(Name = "FOCQuantity", ResourceType = typeof (Resources.Resources))]
     [RequiredIf("isFOC == true", ErrorMessageResourceName = "FOCQuantityRequired", ErrorMessageResourceType = typeof (Resources.Resources))]
     [AssertThat("FOCQuantity > 0", ErrorMessageResourceName = "FOCQuantityRange", ErrorMessageResourceType = typeof (Resources.Resources))]
     public int? FOCQuantity { get; set; }

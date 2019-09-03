@@ -20,12 +20,17 @@ namespace app.bsms.Models.Manage.Post
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
     public DateTime? joinedDate { get; set; }
 
-        //Yoonus
-        //[Required(ErrorMessageResourceName = "RefCodeRequired", ErrorMessageResourceType = typeof (Resources.Resources))]
-        [Display(Name = "RefCode", ResourceType = typeof (Resources.Resources))]
-    public string referenceCode { get; set; }
+        //referenceCode
+        [Required(ErrorMessageResourceName = "RefCodeRequired", ErrorMessageResourceType = typeof (Resources.Resources))]
+        [Display(Name = "referenceCode", ResourceType = typeof (Resources.Resources))]
+        public string referenceCode { get; set; }
 
-    [Display(Name = "CustClass", ResourceType = typeof (Resources.Resources))]
+        //[Required(ErrorMessageResourceName = "NRICRequired", ErrorMessageResourceType = typeof(Resources.Resources))]
+        //[Display(Name = "NRIC", ResourceType = typeof(Resources.Resources))]
+        //public string nric { get; set; }
+
+
+        [Display(Name = "CustClass", ResourceType = typeof (Resources.Resources))]
     public string customerClass { get; set; }
 
     [Required(ErrorMessageResourceName = "CustClassRequired", ErrorMessageResourceType = typeof(Resources.Resources))]

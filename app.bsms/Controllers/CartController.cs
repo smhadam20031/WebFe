@@ -123,6 +123,21 @@ namespace app.bsms.Controllers
             //return this.PartialView("_PartialServiceType", catelogue);
         }
 
+        public ActionResult GetCustomerModal1(string customer)
+        {
+            var lstCustomer = new List<Register>();
+            List<Register> registerList = app.bsms.api.Service.PostRead<Register>("SearchCustomer", JsonConvert.SerializeObject((object)new Search()
+            //List<Register> registerList = app.bsms.api.Service.PostRead<Register>("listCustomer", JsonConvert.SerializeObject((object)new Search()
+            {
+                siteCode = ((User)this.Session["Login_Details"]).siteCode,
+                customerName = customer
+            }).Replace(",\"lstCustomer\":null,\"lstCustomerClass\":null,\"lstTherapist\":null,\"lstConsultant\":null,\"lstCustomerType\":null", string.Empty));
+            lstCustomer.AddRange((IEnumerable<Register>)registerList);
+
+            return this.PartialView("_SelectCustomerModal1", lstCustomer);
+
+         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Staff(app.bsms.Models.Sales.Cart model)
@@ -284,7 +299,8 @@ namespace app.bsms.Controllers
                             id = (model.cart.cartToken == null || !(model.cart.cartToken != string.Empty) ? (string)null : model.cart.cartToken)
                         });
                     }
-                    //Yoonus Adding
+                    
+                    
                     item.lineNumber = num1;
                     item.lineStatus = "SA";
                     item.macAddress = this.Request.ServerVariables["REMOTE_ADDR"];
